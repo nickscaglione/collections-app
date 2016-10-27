@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :cards
   resources :collections
-  resources :collector 
+  resources :collector
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'

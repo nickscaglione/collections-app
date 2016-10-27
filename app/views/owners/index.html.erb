@@ -1,0 +1,4 @@
+<h1>All Collectors</h1>
+<ul><% @owners.each do |collect| %>
+<li><%= link_to collect.name, owner_path(collect) %></li>
+<% end %></ul>

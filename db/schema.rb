@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20161027134857) do
 
   create_table "collections", force: :cascade do |t|
     t.string   "category"
-    t.integer  "collector_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "collectors", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20161027134857) do
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
     t.string   "password_digest"
-    t.integer  "collector_id"
+    t.integer  "owner_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

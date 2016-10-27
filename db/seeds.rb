@@ -6,18 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-laura = User.create(user_name: "lshapz")
-nick = User.create(user_name: "nas1")
-marc = User.create(user_name: "immediato")
+laura = User.create(user_name: "lshapz", password: "password")
+nick = User.create(user_name: "nas1", password: "password")
+marc = User.create(user_name: "immediato", password: "password")
 
-laura_coll = Collector.create(name: laura.user_name, user: laura)
-nick_coll = Collector.create(name: nick.user_name, user: nick)
-marc_coll = Collector.create(name: marc.user_name, user: marc)
+laura_coll = Collector.create(name: laura.user_name, user_id: laura.id)
+nick_coll = Collector.create(name: nick.user_name, user_id: nick.id)
+marc_coll = Collector.create(name: marc.user_name, user_id: marc.id)
 
-marc_magic = Collection.create(type: "Magic the Gathering", collector: marc_coll)
-nick_poke = Collection.create(type: "Pokemon", collector: nick_coll)
-laura_poke = Collection.create(type: "Pokemon", collector: laura_coll)
-marc_poke = Collection.create(type: "Pokemon", collector: marc_coll)
+marc_magic = Collection.create(category: "Magic the Gathering", collector_id: marc_coll.id)
+nick_poke = Collection.create(category: "Pokemon", collector_id: nick_coll.id)
+laura_poke = Collection.create(category: "Pokemon", collector_id: laura_coll.id)
+marc_poke = Collection.create(category: "Pokemon", collector_id: marc_coll.id)
 
 
 Card.create(name: "Pikachu", count: 1, collection: nick_poke)

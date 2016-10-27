@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20161027134857) do
   end
 
   create_table "collections", force: :cascade do |t|
-    t.string   "type"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "category"
+    t.integer  "collector_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "collectors", force: :cascade do |t|

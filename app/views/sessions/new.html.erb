@@ -1,0 +1,15 @@
+<h2>Sign in</h2>
+
+<!-- error message iterator here -->
+
+<%= form_for @user, url: '/login', method: :post do |f| %>
+
+  <%= f.label "Username:" %><br>
+  <%= f.text_field :user_name, placeholder: "Username" %><br>
+
+  <%= f.label "Password:" %><br>
+  <%= f.password_field :password, placeholder: "Password" %><br>
+
+  <%= f.submit %>
+
+<% end %>

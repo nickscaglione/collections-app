@@ -1,4 +1,4 @@
-<h1><%= @collection.owner.name %>'s <%= @collection.category %></h1>
+<h1><%= link_to @collection.owner.name, owner_path(@collection.owner) %>'s <%= @collection.category %></h1>
 
 
 <h2>Cards:</h2>

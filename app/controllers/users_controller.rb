@@ -7,8 +7,21 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
-    @user = User.create(params[:user])
+    # byebug
+    @user = User.new(user_params)
+    # byebug 
+    if !@user.save
+      flash[:notice] = @user.errors.full_messages[0]
+      redirect_to register_path
+    elsif params[:user][:password] != params[:user][:password_confirmation]
+      flash[:notice] = "Passwords do not match"
+      redirect_to register_path
+    else
+      @user.save 
+      owner = Owner.create(name: @user.user_name, user_id: @user.id)
+      session[:user_id] = @user.id
+      redirect_to user_path(@user)
+    end 
   end
 
   def edit
@@ -19,12 +32,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user)
-    @owner = Owner.find(params[:id])
+    @owner = Owner.find_by(user_id: current_user)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(:user_name, :password)
   end
 end

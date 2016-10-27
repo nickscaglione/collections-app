@@ -3,8 +3,7 @@
 <ul>
 <% @owner.collections.each do |collect| %>
 <li><%= link_to collect.category, collection_path(collect) %></li>
-<br>
-<ul><% @owner.cards.each do |card| %>
+<ul><% collect.cards.each do |card| %>
 <li> <%= card.count %>x <%= link_to card.name, card_path(card) %></li>
 <% end %></ul>
 <br>

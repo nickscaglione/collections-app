@@ -1,4 +1,4 @@
-<%= @card.collection.owner.name %>'s
-<%= @card.count %>
+<%= link_to @card.collection.owner.name, owner_path(@card.collection.owner) %>'s
+<%= @card.count %>x
 <%= @card.name %>
 from the <%= link_to @card.collection.category, collection_path(@card.collection) %> collection.

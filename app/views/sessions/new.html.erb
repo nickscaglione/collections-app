@@ -1,15 +1,19 @@
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
+
 <h2>Sign in</h2>
 
 <!-- error message iterator here -->
+<%= form_tag '/login' do |f| %>
 
-<%= form_for @user, url: '/login', method: :post do |f| %>
+  <%= label_tag "User Name" %>
+  <%= text_field_tag :user_name%><br>
 
-  <%= f.label "Username:" %><br>
-  <%= f.text_field :user_name, placeholder: "Username" %><br>
+  <%= label_tag "Password" %>
+  <%= password_field_tag :password %>
 
-  <%= f.label "Password:" %><br>
-  <%= f.password_field :password, placeholder: "Password" %><br>
-
-  <%= f.submit %>
+  <%= submit_tag "Log In", :id => "submit", :name => "submit" %>
 
 <% end %>

@@ -9,9 +9,14 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.create(collection_params)
-
-    redirect_to @collection
+    @collection = Collection.new(collection_params)
+    @collection.current_user = current_user
+    if @collection.save
+      redirect_to @collection
+    else
+      flash[:notice] = @collection.errors.full_messages.first
+      render :new
+    end
   end
 
   def edit

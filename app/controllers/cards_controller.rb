@@ -11,11 +11,11 @@ class CardsController < ApplicationController
     @user = User.find(current_user)
     if params[:card][:collection] == "other"
       @collection = Collection.create(owner: @user.owner, category: params[:collection])
-    else 
+    else
      #  byebug
       @collection = Collection.find_by(category: params[:card][:collection])
-      
-    end  
+
+    end
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
     byebug
     redirect_to card_path(@card)
@@ -34,11 +34,11 @@ class CardsController < ApplicationController
     byebug
    if params[:card][:collection] == "other"
       @collection = Collection.create(owner: @user.owner, category: params[:collection])
-    else 
-      byebug 
+    else
+      byebug
       @collection = Collection.find_by(category: params[:card][:collection])
       #
-    end  
+    end
     params[:card][:collection_id] = @collection.id
 #    byebug
     # params[:card][:user_name]
@@ -47,6 +47,6 @@ class CardsController < ApplicationController
   end
 
   def show
-    @card = Card.find(params[:id]) 
+    @card = Card.find(params[:id])
   end
 end

@@ -20,9 +20,19 @@ class CollectionsController < ApplicationController
   end
 
   def edit
+    @collection = Collection.find(params[:id])
   end
 
   def update
+    @collection = Collection.find(params[:id])
+    @collection.current_user = current_user
+    @collection.category = params[:collection][:category]
+    if @collection.save
+      redirect_to @collection
+    else
+      flash[:notice] = @collection.errors.full_messages.first
+      render :edit
+    end
   end
 
   def show

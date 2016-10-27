@@ -1,5 +1,9 @@
 <h1><%= link_to @collection.owner.name, owner_path(@collection.owner) %>'s <%= @collection.category %></h1>
-
+<p>
+  <% if @collection.owner.id == current_user.owner.id %>
+    <%= link_to "Edit collection category", edit_collection_url(@collection) %>
+  <% end %>
+</p>
 
 <h2>Cards:</h2>
 <ul><% @collection.cards.each do |card| %>

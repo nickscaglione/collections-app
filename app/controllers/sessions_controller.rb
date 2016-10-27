@@ -10,18 +10,18 @@ class SessionsController < ApplicationController
   def create
     # byebug
     @user = User.find_by(user_name: params[:user_name])
-    if @user.authenticate(params[:password]) == false 
+    if @user.authenticate(params[:password]) == false
       # byebug
       flash[:notice] = "Incorrect Password"
       redirect_to login_path
     else
       session[:user_id] = @user.id
       redirect_to user_path(@user)
-    end 
+    end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to users_path
+    redirect_to login_path
   end
 end

@@ -5,9 +5,9 @@ class CollectorController < ApplicationController
   def create
   end
 
-    
+
   def update
-  end 
+  end
 
   def edit
   end

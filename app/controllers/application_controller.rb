@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+   def index
+    render :index
+  end 
+
   def current_user
     if session[:user_id]
       @user = User.find(session[:user_id])

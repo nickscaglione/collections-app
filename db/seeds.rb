@@ -10,10 +10,14 @@ laura = User.create(user_name: "lshapz")
 nick = User.create(user_name: "nas1")
 marc = User.create(user_name: "immediato")
 
-marc_magic = Collection.create(type: "Magic the Gathering", user: marc)
-nick_poke = Collection.create(type: "Pokemon", user: nick)
-laura_poke = Collection.create(type: "Pokemon", user: laura)
-marc_poke = Collection.create(type: "Pokemon", user: marc)
+laura_coll = Collector.create(name: laura.user_name, user: laura)
+nick_coll = Collector.create(name: nick.user_name, user: nick)
+marc_coll = Collector.create(name: marc.user_name, user: marc)
+
+marc_magic = Collection.create(type: "Magic the Gathering", collector: marc_coll)
+nick_poke = Collection.create(type: "Pokemon", collector: nick_coll)
+laura_poke = Collection.create(type: "Pokemon", collector: laura_coll)
+marc_poke = Collection.create(type: "Pokemon", collector: marc_coll)
 
 Card.create(name: "Pikachu", count: 1, collection: nick_poke)
 Card.create(name: "Pikachu", count: 1, collection: laura_poke)

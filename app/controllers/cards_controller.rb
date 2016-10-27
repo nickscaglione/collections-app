@@ -21,6 +21,12 @@ class CardsController < ApplicationController
     redirect_to card_path(@card)
   end
 
+  def index
+    all = Card.all
+    mine = all.select {|card| card.collection.owner.id = current_user.id}
+    @cards = mine.sort_by {|card| card.collection}
+  end
+
   def edit
     @card = Card.find(params[:id])
     # byebug

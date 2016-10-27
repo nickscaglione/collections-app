@@ -1,7 +1,7 @@
 class OwnersController < ApplicationController
   
   def index
-    @collectors = Owner.all
+    @owners = Owner.all
   end
 
   def new
@@ -18,7 +18,7 @@ class OwnersController < ApplicationController
   end
 
   def show
-    @collector = Owner.find(params[:id])
+    @owner = Owner.find(params[:id])
   end
 end
     #this might need to be chaned to user_id? or nah because has one?

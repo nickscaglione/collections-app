@@ -1,8 +1,8 @@
-<h1><%= @collector.name %></h1>
+<h1><%= @owner.name %></h1>
 
 
 <h2>Cards:</h2>
-<ul><% @collector.cards.each do |card| %>
+<ul><% @owner.cards.each do |card| %>
 <li><%= card.count %> <%= card.name %><% if card.count > 1 %>s<% end %></li>
 <% end %></ul>
 

@@ -23,7 +23,7 @@ class CardsController < ApplicationController
 
   def index
     all = Card.all
-    mine = all.select {|card| card.collection.owner.id = current_user.id}
+    mine = all.select {|card| card.collection.owner.user_id == current_user.id}
     @cards = mine.sort_by {|card| card.collection}
   end
 

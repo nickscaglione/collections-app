@@ -1,2 +1,9 @@
-<h1>Collector#show</h1>
-<p>Find me in app/views/collector/show.html.erb</p>
+<h1><%= @collector.name %></h1>
+
+
+<h2>Cards:</h2>
+<ul><% @collector.cards.each do |card| %>
+<li><%= card.count %> <%= card.name %><% if card.count > 1 %>s<% end %></li>
+<% end %></ul>
+
+<h2>Collections:</h2>

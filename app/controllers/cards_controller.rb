@@ -15,8 +15,6 @@ class CardsController < ApplicationController
      #  byebug
       @collection = Collection.find_by(category: params[:card][:collection])
     end
-    
-    
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
     byebug
     redirect_to card_path(@card)

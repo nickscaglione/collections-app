@@ -19,10 +19,10 @@ class CardsController < ApplicationController
     else
       @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
     end
-        @user.owner.collections.each do |y|
-            y.cards.each do |z|
-                if z.name == params[:card][:name]
-                  flash[:notice] = "you already have some of those! try editing the quantity"
+        @user.owner.collections.each do |collection|
+            collection.cards.each do |card|
+                if card.name == params[:card][:name] 
+                  flash[:notice] = "you already have some of those! try editing"
                 render :new and return
               end
            end 
@@ -61,8 +61,6 @@ class CardsController < ApplicationController
       #
     end
     params[:card][:collection_id] = @collection.id
-#    byebug
-    # params[:card][:user_name]
     @card.update(params[:card].permit(:collection_id, :name, :count))
     redirect_to card_path(@card)
   end

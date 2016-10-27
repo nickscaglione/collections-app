@@ -19,7 +19,6 @@ nick_poke = Collection.create(category: "Pokemon", collector_id: nick_coll.id)
 laura_poke = Collection.create(category: "Pokemon", collector_id: laura_coll.id)
 marc_poke = Collection.create(category: "Pokemon", collector_id: marc_coll.id)
 
-
 Card.create(name: "Pikachu", count: 1, collection: nick_poke)
 Card.create(name: "Pikachu", count: 1, collection: laura_poke)
 Card.create(name: "Psyduck", count: 1, collection: laura_poke)

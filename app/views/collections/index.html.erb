@@ -1,0 +1,4 @@
+<h1>All Collections</h1>
+<ul><% @collections.each do |collect| %>
+<li><%= link_to collect.collector.name, collector_path(collect.collector) %>'s <%= link_to collect.category, collection_path(collect) %></li>
+<% end %></ul>

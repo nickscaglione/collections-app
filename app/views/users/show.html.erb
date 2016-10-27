@@ -1,1 +1,4 @@
-<%= @user.user_name %>
+<h1><%= link_to @user.user_name, user_path(@user) %></h1>
+
+<p><%= link_to "My Collections", owner_path(@user.owner) %></p>
+

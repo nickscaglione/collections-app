@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
+    @user = User.create(params[:user])
   end
 
   def edit
@@ -16,7 +18,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user)
+    @owner = Owner.find(params[:id])
   end
 
   private

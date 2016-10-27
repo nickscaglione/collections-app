@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     # byebug
     @user = User.new(user_params)
-    # byebug 
+    # byebug
     if !@user.save
       flash[:notice] = @user.errors.full_messages[0]
       redirect_to register_path
@@ -17,11 +17,11 @@ class UsersController < ApplicationController
       flash[:notice] = "Passwords do not match"
       redirect_to register_path
     else
-      @user.save 
+      @user.save
       owner = Owner.create(name: @user.user_name, user_id: @user.id)
       session[:user_id] = @user.id
       redirect_to user_path(@user)
-    end 
+    end
   end
 
   def edit

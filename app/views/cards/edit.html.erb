@@ -1,0 +1,16 @@
+<%= form_for @card do |f| -%>
+<p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
+<p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
+Collection
+<% @user.owner.collections.each do |collection| %>
+
+<% if collection.category == @card.collection.category %>
+<p>  <%= f.radio_button :collection, collection.category, checked: true %>  <%= f.label :collection, collection.category %> </p>
+<% else %>
+<p>  <%= f.radio_button :collection, collection.category%>  <%= f.label :collection, collection.category %> </p>
+<% end %>
+<% end %>
+<%= f.radio_button :collection, 'other' %>  <%= text_field_tag :collection, 'new collection' %>
+<p><%= f.submit "Update Card", :name => 'submit', :disable_with => 'Creating Carding...' %>
+</p><% end %>
+

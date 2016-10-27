@@ -7,7 +7,7 @@ class CardsController < ApplicationController
   end
 
   def create
-    # byebug
+     # byebug
     @user = User.find(current_user)
     if params[:card][:collection] == "other"
       @collection = Collection.create(owner: @user.owner, category: params[:collection])
@@ -15,14 +15,29 @@ class CardsController < ApplicationController
       @collection = Collection.find_by(category: params[:card][:collection])
     end  
       @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection: @collection)
-      byebug
+      # byebug
     redirect_to card_path(@card)
   end
 
   def edit
+    @card = Card.find(params[:id])
+        @user = User.find(current_user)
+
   end
 
   def update
+    @card = Card.find(params[:id])
+
+   if params[:card][:collection] == "other"
+      @collection = Collection.create(owner: @user.owner, category: params[:collection]).id
+    else 
+      @collection = Collection.find_by(category: params[:card][:collection]).id
+    end  
+    params[:card][:collection_id] = @collection
+#    byebug
+
+    @card.update(params[:card].permit(:collection_id, :name, :count))
+    redirect_to card_path(@card)
   end
 
   def show

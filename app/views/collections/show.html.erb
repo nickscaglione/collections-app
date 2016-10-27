@@ -1,0 +1,7 @@
+<h1><%= @collection.collector.name %>'s <%= @collection.category %></h1>
+
+
+<h2>Cards:</h2>
+<ul><% @collection.cards.each do |card| %>
+<li><%= card.count %> <%= card.name %><% if card.count > 1 %>s<% end %></li>
+<% end %></ul>

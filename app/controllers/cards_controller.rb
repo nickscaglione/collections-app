@@ -2,17 +2,32 @@ require 'byebug'
 class CardsController < ApplicationController
   def new
     # @user = User.find(3)
-    @user = User.find(current_user)
     @card = Card.new
+    if current_user == nil
+      redirect_to login_path
+    else
+      @user = User.find(current_user)
+    end
   end
 
   def create
+    @card = Card.new
+    # @card.current_user = @user
     @user = User.find(current_user)
     if params[:card][:collection] == "other"
       @collection = Collection.create(owner: @user.owner, category: params[:collection])
     else
-      @collection = Collection.find_by(category: params[:card][:collection])
+      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
     end
+        @user.owner.collections.each do |y|
+            y.cards.each do |z|
+                if z.name == params[:card][:name]
+                  flash[:notice] = "you already have some of those! try editing the quantity"
+                render :new and return
+              end
+           end 
+          end
+
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
     redirect_to card_path(@card)
   end
@@ -28,9 +43,13 @@ class CardsController < ApplicationController
   def edit
     @card = Card.find(params[:id])
     # byebug
-    @user = User.find(current_user)
+    if current_user == nil
+      redirect_to login_path
+    else
+      @user = User.find(current_user)
+    end
+  end    
 
-  end
 
   def update
     @card = Card.find(params[:id])

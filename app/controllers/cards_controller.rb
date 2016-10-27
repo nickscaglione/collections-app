@@ -14,12 +14,15 @@ class CardsController < ApplicationController
     else
      #  byebug
       @collection = Collection.find_by(category: params[:card][:collection])
-
     end
+    
+    
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
     byebug
     redirect_to card_path(@card)
   end
+
+
 
   def index
     all = Card.all
@@ -50,6 +53,13 @@ class CardsController < ApplicationController
     # params[:card][:user_name]
     @card.update(params[:card].permit(:collection_id, :name, :count))
     redirect_to card_path(@card)
+  end
+
+  def destroy
+    @card = Card.find(params[:id])
+    #byebug
+    @card.delete
+    redirect_to cards_path
   end
 
   def show

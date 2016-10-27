@@ -14,3 +14,12 @@ Collection
 <p><%= f.submit "Update Card", :name => 'submit', :disable_with => 'Creating Carding...' %>
 </p><% end %>
 
+
+
+
+
+
+<br></br>
+<%= button_to "Delete This Card (all of them!)", {:controller => :cards,
+      :action => 'destroy', :id => @card.id }, :method => :delete %>
+

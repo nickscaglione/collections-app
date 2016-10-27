@@ -1,0 +1,9 @@
+<%= form_for @card do |f| -%>
+<p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
+<p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
+<% @user.owner.collections.each do |collection| %>
+<p><%= f.label :collection, collection.category %> <%= f.radio_button :collection, collection.category %></p>
+<% end %>
+<%= text_field_tag :collection %><%= f.radio_button :collection, 'other' %>
+<p><%= f.submit "Create Card", :name => 'submit', :disable_with => 'Creating Carding...' %>
+</p><% end %>

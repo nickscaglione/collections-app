@@ -1,12 +1,11 @@
 <h1><%= @owner.name %></h1>
-
-
-<h2>Cards:</h2>
+<h2>Collections:</h2>
+<ul>
+<% @owner.collections.each do |collect| %>
+<li><%= link_to collect.category, collection_path(collect) %></li>
+<br>
 <ul><% @owner.cards.each do |card| %>
 <li><%= card.count %> <%= card.name %><% if card.count > 1 %>s<% end %></li>
 <% end %></ul>
-
-<h2>Collections:</h2>
-<ul><% @owner.collections.each do |collect| %>
-<li><%= link_to collect.category, collection_path(collect) %></li>
+<br>
 <% end %></ul>

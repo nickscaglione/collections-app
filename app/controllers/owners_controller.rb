@@ -1,21 +1,23 @@
+require 'byebug'
 class OwnersController < ApplicationController
   
   def index
+    byebug
     @owners = Owner.all
   end
 
-  def new
-  end
+  # # def new
+  # # end
 
-  def create
-  end
+  # # def create
+  # # end
 
 
-  def update
-  end
+  # def update
+  # end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def show
     @owner = Owner.find(params[:id])

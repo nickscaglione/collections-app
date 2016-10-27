@@ -7,3 +7,6 @@
 <% end %></ul>
 
 <h2>Collections:</h2>
+<ul><% @owner.collections.each do |collect| %>
+<li><%= link_to collect.category, collection_path(collect) %></li>
+<% end %></ul>

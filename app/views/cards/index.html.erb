@@ -3,3 +3,6 @@
 <ul><% @cards.each do |card| %>
 <li><%= card.count %>x <%= link_to card.name, card_path(card) %>, from <%= link_to card.brand.category, brand_path(card.brand) %></li>
 <% end %></ul>
+
+<%= pie_chart(@poke) %>
+<%= pie_chart(@magic) %>

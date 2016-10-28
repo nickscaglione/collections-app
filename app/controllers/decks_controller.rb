@@ -50,8 +50,12 @@ class DecksController < ApplicationController
     else
       @deck = Deck.find(params[:id])
       @owner = Owner.find_by(user_id: @deck.owner.id)
-    end
+      # byebug 
+    end 
+  
 
+
+ 
   end
 
   def index

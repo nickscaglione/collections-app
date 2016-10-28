@@ -39,6 +39,10 @@ class BrandsController < ApplicationController
     #@brand = brand.find_by(user_id: current_user)
     @brand = Brand.find(params[:id])
     # byebug
+    @cards = []
+    @brand.cards.each do |card| 
+       @cards << [card.name, card.count]
+    end 
     @owner = Owner.find_by(user_id: current_user.id)
   end
 

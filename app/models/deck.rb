@@ -24,4 +24,17 @@ def cards_with_count
   end 
 
 
+
+  def card_names_with_count
+  cards = []
+  self.card_decks.each do |card_deck|
+    card = Card.find(card_deck.card_id)
+    count = card_deck.card_count
+    cards << [count, card.name]
+  end 
+    cards
+  end 
+
+
+
 end

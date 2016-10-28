@@ -4,7 +4,7 @@
 <% @owner.brands.each do |brand| %>
 <li><%= link_to brand.category, brand_path(brand) %></li>
 <ul><% brand.cards.each do |card| %>
-<li><%= card.count %>x <%= link_to card.name, card_path(card) %></li>
+<li><%= link_to card.name, card_path(card) %></li>
       <% if card.decks %>
        <ul> <% card.decks.uniq.each do |deck| %>
           <li>featured in the <%= link_to deck.name, deck_path(deck) %> deck</li>
@@ -16,3 +16,7 @@
 
 <p><%= link_to "Create A New Card", new_card_path %></p>
 <p><%= link_to "Create a New Collection", new_brand_path  %></p>
+
+
+
+<%= column_chart(@cards) %>

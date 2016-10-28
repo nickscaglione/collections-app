@@ -13,19 +13,12 @@ class CardsController < ApplicationController
   def create
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
-    if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @owner, category: params[:collection])
-    # @card.current_user = @user
-    @user = User.find(current_user)
     if params[:card][:brand] == "other"
-      @brand = Brand.create(owner: @user.owner, category: params[:brand])
+      @brand = Brand.create(owner: @owner, category: params[:brand])
     else
-      @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
+      @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
     end
-        @owner.collections.each do |collection|
-            collection.cards.each do |card|
-                if card.name == params[:card][:name]
-        @user.owner.brands.each do |brand|
+        @owner.brands.each do |brand|
             brand.cards.each do |card|
                 if card.name == params[:card][:name] 
                   flash[:notice] = "you already have some of those! try editing"
@@ -59,12 +52,10 @@ class CardsController < ApplicationController
 
   def update
     @card = Card.find(params[:id])
-    @user = User.find(current_user)
-    if params[:card][:brand] == "other"
-      @brand = Brand.create(owner: @user.owner, category: params[:brand])
     @owner = Owner.find_by(user_id: current_user.id)
-    if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @owner, category: params[:collection])
+
+    if params[:card][:brand] == "other"
+      @brand = Brand.create(owner: @owner, category: params[:brand])
     else
       @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
       #

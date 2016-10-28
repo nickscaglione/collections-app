@@ -2,7 +2,7 @@
 <h2>Collections:</h2>
 <ul>
 <% @owner.brands.each do |collect| %>
-<li><%= link_to collect.category, collection_path(collect) %></li>
+<li><%= link_to collect.category, brand_path(collect) %></li>
 <ul><% collect.cards.each do |card| %>
 <li> <%= card.count %>x <%= link_to card.name, card_path(card) %></li>
 <% end %></ul>
@@ -10,4 +10,4 @@
 <% end %></ul>
 
 <p><%= link_to "Create A New Card", new_card_path %></p>
-<p><%= link_to "Create a New Collection", new_collection_path  %></p>
+<p><%= link_to "Create a New Collection", new_brand_path  %></p>

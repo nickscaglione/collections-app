@@ -14,13 +14,13 @@ class CardsController < ApplicationController
     @card = Card.new
     # @card.current_user = @user
     @user = User.find(current_user)
-    if params[:card][:collection] == "other"
-      @collection = Brand.create(owner: @user.owner, category: params[:collection])
+    if params[:card][:brand] == "other"
+      @brand = Brand.create(owner: @user.owner, category: params[:brand])
     else
-      @collection = Brand.find_by(category: params[:card][:collection], owner: @user.owner)
+      @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
     end
-        @user.owner.collections.each do |collection|
-            collection.cards.each do |card|
+        @user.owner.brands.each do |brand|
+            brand.cards.each do |card|
                 if card.name == params[:card][:name] 
                   flash[:notice] = "you already have some of those! try editing"
                 render :new and return
@@ -28,7 +28,7 @@ class CardsController < ApplicationController
            end 
           end
 
-    @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
+    @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
     redirect_to card_path(@card)
   end
 
@@ -36,8 +36,8 @@ class CardsController < ApplicationController
 
   def index
     all = Card.all
-    mine = all.select {|card| card.collection.owner.user_id == current_user.id}
-    @cards = mine.sort_by {|card| card.collection}
+    mine = all.select {|card| card.brand.owner.user_id == current_user.id}
+    @cards = mine.sort_by {|card| card.brand}
   end
 
   def edit
@@ -54,14 +54,14 @@ class CardsController < ApplicationController
   def update
     @card = Card.find(params[:id])
     @user = User.find(current_user)
-    if params[:card][:collection] == "other"
-      @collection = Brand.create(owner: @user.owner, category: params[:collection])
+    if params[:card][:brand] == "other"
+      @brand = Brand.create(owner: @user.owner, category: params[:brand])
     else
-      @collection = Brand.find_by(category: params[:card][:collection], owner: @user.owner)
+      @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
       #
     end
-    params[:card][:collection_id] = @collection.id
-    @card.update(params[:card].permit(:collection_id, :name, :count))
+    params[:card][:brand_id] = @brand.id
+    @card.update(params[:card].permit(:brand_id, :name, :count))
     redirect_to card_path(@card)
   end
 

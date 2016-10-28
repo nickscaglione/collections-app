@@ -1,7 +1,7 @@
-<%= link_to @card.collection.owner.name, owner_path(@card.collection.owner) %>'s
+<%= link_to @card.brand.owner.name, owner_path(@card.brand.owner) %>'s
 <%= @card.count %>x
 <%= @card.name %>
-from the <%= link_to @card.collection.category, collection_path(@card.collection) %> collection.
+from the <%= link_to @card.brand.category, brand_path(@card.brand) %> brand.
 
 <br></br>
 <p><%= link_to "Edit Card", edit_card_path(@card)  %></p>

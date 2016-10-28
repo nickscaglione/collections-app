@@ -1,8 +1,8 @@
 class Brand < ApplicationRecord
   has_many :cards
   belongs_to :owner
-  has_many :decks
   has_many :card_decks
+  has_many :decks
 
 
 

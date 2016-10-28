@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       if flash[:target_path]
         redirect_to flash[:target_path]
       else
-        redirect_to user_path(@user)
+        redirect_to home_path
       end
     end
   end

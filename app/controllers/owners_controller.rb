@@ -1,8 +1,7 @@
 require 'byebug'
 class OwnersController < ApplicationController
-  
+
   def index
-    byebug
     @owners = Owner.all
   end
 

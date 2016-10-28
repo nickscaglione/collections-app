@@ -1,7 +1,8 @@
 <h1><%= @user.user_name %></h1>
 
-<p><%= link_to "My Collections", owner_path(@user.owner) %></p>
+<p><%= link_to "My Collections", owner_path(@owner) %></p>
 
 <p><%= form_tag('/logout') do %>
 <%= submit_tag "Log Me Out" %>
-<% end %></p> 
+
+<% end %></p>

@@ -6,26 +6,25 @@ class CardsController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @user = User.find(current_user)
+      @owner = Owner.find_by(user_id: current_user.id)
     end
   end
 
   def create
     @card = Card.new
-    # @card.current_user = @user
-    @user = User.find(current_user)
+    @owner = Owner.find_by(user_id: current_user.id)
     if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+      @collection = Collection.create(owner: @owner, category: params[:collection])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
+      @collection = Collection.find_by(category: params[:card][:collection], owner: @owner)
     end
-        @user.owner.collections.each do |collection|
+        @owner.collections.each do |collection|
             collection.cards.each do |card|
-                if card.name == params[:card][:name] 
+                if card.name == params[:card][:name]
                   flash[:notice] = "you already have some of those! try editing"
                 render :new and return
               end
-           end 
+           end
           end
 
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
@@ -46,19 +45,18 @@ class CardsController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @user = User.find(current_user)
+      @owner = Owner.find_by(user_id: current_user.id)
     end
-  end    
+  end
 
 
   def update
     @card = Card.find(params[:id])
-    @user = User.find(current_user)
+    @owner = Owner.find_by(user_id: current_user.id)
     if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+      @collection = Collection.create(owner: @owner, category: params[:collection])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
-      #
+      @collection = Collection.find_by(category: params[:card][:collection], owner: @owner)
     end
     params[:card][:collection_id] = @collection.id
     @card.update(params[:card].permit(:collection_id, :name, :count))

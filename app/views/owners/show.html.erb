@@ -1,4 +1,4 @@
-<h1><%= link_to @owner.name, user_path(@owner.user_id) %></h1>
+<h1><%= @owner.name %></h1>
 <h2>Collections:</h2>
 <ul>
 <% @owner.collections.each do |collect| %>

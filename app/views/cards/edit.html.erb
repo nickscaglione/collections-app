@@ -2,7 +2,7 @@
 <p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
 <p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
 Collection
-<% @user.owner.collections.each do |collection| %>
+<% @owner.collections.each do |collection| %>
 
 <% if collection.category == @card.collection.category %>
 <p>  <%= f.radio_button :collection, collection.category, checked: true %>  <%= f.label :collection, collection.category %> </p>
@@ -22,4 +22,3 @@ Collection
 <br></br>
 <%= button_to "Delete This Card (all of them!)", {:controller => :cards,
       :action => 'destroy', :id => @card.id }, :method => :delete %>
-

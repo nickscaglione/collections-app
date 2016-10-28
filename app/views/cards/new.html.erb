@@ -6,7 +6,7 @@
 <p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
 <p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
 Collection
-<% @user.owner.collections.each do |collection| %>
+<% @owner.collections.each do |collection| %>
 <p><%= f.radio_button :collection, collection.category %>  <%= f.label :collection, collection.category %> </p>
 <% end %>
 <%= f.radio_button :collection, 'other' %>  <%= text_field_tag :collection, 'new collection' %>

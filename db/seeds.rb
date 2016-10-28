@@ -31,10 +31,9 @@ Card.create(name: "Bulbasaur", count: 1, collection: marc_poke)
 Card.create(name: "Charmander", count: 3, collection: marc_poke)
 Card.create(name: "Squirtle", count: 1, collection: marc_poke)
 
-Deck.create(name: "Marc's Starters")
+Deck.create(name: "Marc's Starters") 
 CardDeck.create(card_id: 9, deck_id: 1, card_count: 1)
 CardDeck.create(card_id: 10, deck_id: 1, card_count: 1)
 CardDeck.create(card_id: 11, deck_id: 1, card_count: 1)
-
 Deck.create(name: "Laura's Bats")
 CardDeck.create(card_id: 7, deck_id: 2, card_count: 10)

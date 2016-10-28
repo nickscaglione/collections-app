@@ -42,7 +42,7 @@ class DecksController < ApplicationController
       @owner = Owner.find_by(user_id: @deck.owner.id)
       # byebug 
     end 
-    end
+  
 
 
  

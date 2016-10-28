@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-   def index
+  def index
     render :index
-  end 
+  end
 
   def current_user
     if session[:user_id]
@@ -13,8 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-private
+  private
+
   def require_logged_in
+    flash[:target_path] = request.path if !current_user
     redirect_to controller: 'sessions', action: 'new' unless current_user
   end
 

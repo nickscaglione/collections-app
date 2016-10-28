@@ -33,9 +33,22 @@ ActiveRecord::Schema.define(version: 20161028131849) do
   create_table "cards", force: :cascade do |t|
     t.string   "name"
     t.integer  "count"
+<<<<<<< HEAD
+    t.integer  "collection_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string   "category"
+    t.integer  "collector_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+=======
     t.integer  "brand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+>>>>>>> 3b963612e50d4312ea08562b7bd4e859b789b8d7
   end
 
   create_table "collectors", force: :cascade do |t|

@@ -37,6 +37,17 @@ class CardsController < ApplicationController
     all = Card.all
     mine = all.select {|card| card.brand.owner.user_id == current_user.id}
     @cards = mine.sort_by {|card| card.brand}
+    @poke = [] 
+    @magic = []
+    @cards.each do |card| 
+      # byebug
+      if card.brand.category == "Pokemon"
+      @poke << [card.name, card.count]
+    elsif card.brand
+      @magic << [card.name, card.count]
+    end 
+  end
+
   end
 
   def edit

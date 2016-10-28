@@ -2,6 +2,9 @@
 <%= @card.count %>x
 <%= @card.name %>
 from the <%= link_to @card.brand.category, brand_path(@card.brand) %> brand.
-
+<% if @card.decks %>
+<% @card.decks.uniq.each do |deck| %>
+ featured in the <%= deck.name %> deck
+  <% end %> <% end %>
 <br></br>
 <p><%= link_to "Edit Card", edit_card_path(@card)  %></p>

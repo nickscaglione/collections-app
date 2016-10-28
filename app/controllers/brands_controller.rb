@@ -38,7 +38,7 @@ class BrandsController < ApplicationController
   def show
     #@brand = brand.find_by(user_id: current_user)
     @brand = Brand.find(params[:id])
-    byebug
+    # byebug
     @owner = Owner.find_by(user_id: current_user.id)
   end
 

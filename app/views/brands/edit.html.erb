@@ -1,10 +1,10 @@
-<h3>Edit <%= @collection.category %></h3>
+<h3>Edit <%= @brand.category %></h3>
 
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for(@collection) do |f| %>
+<%= form_for(@brand) do |f| %>
 
   <p><%= f.text_field :category, placeholder: "Collection category" %></p>
 

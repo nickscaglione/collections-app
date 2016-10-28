@@ -6,21 +6,20 @@ class CardsController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @user = User.find(current_user)
+      @owner = Owner.find_by(user_id: current_user.id)
     end
   end
 
   def create
     @card = Card.new
-    # @card.current_user = @user
-    @user = User.find(current_user)
-    if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+    @owner = Owner.find_by(user_id: current_user.id)
+    if params[:card][:brand] == "other"
+      @brand = Brand.create(owner: @owner, category: params[:brand])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
+      @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
     end
-        @user.owner.collections.each do |collection|
-            collection.cards.each do |card|
+        @owner.brands.each do |brand|
+            brand.cards.each do |card|
                 if card.name == params[:card][:name] 
                   flash[:notice] = "you already have some of those! try editing"
                 render :new and return
@@ -28,7 +27,7 @@ class CardsController < ApplicationController
            end 
           end
 
-    @card = Card.create(name: params[:card][:name], count: params[:card][:count], collection_id: @collection.id)
+    @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
     redirect_to card_path(@card)
   end
 
@@ -36,8 +35,8 @@ class CardsController < ApplicationController
 
   def index
     all = Card.all
-    mine = all.select {|card| card.collection.owner.user_id == current_user.id}
-    @cards = mine.sort_by {|card| card.collection}
+    mine = all.select {|card| card.brand.owner.user_id == current_user.id}
+    @cards = mine.sort_by {|card| card.brand}
   end
 
   def edit
@@ -46,22 +45,23 @@ class CardsController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @user = User.find(current_user)
+      @owner = Owner.find_by(user_id: current_user.id)
     end
-  end    
+  end
 
 
   def update
     @card = Card.find(params[:id])
-    @user = User.find(current_user)
-    if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+    @owner = Owner.find_by(user_id: current_user.id)
+
+    if params[:card][:brand] == "other"
+      @brand = Brand.create(owner: @owner, category: params[:brand])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
+      @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
       #
     end
-    params[:card][:collection_id] = @collection.id
-    @card.update(params[:card].permit(:collection_id, :name, :count))
+    params[:card][:brand_id] = @brand.id
+    @card.update(params[:card].permit(:brand_id, :name, :count))
     redirect_to card_path(@card)
   end
 

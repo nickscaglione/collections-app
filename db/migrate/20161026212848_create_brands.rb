@@ -1,6 +1,6 @@
-class CreateCollections < ActiveRecord::Migration[5.0]
+class CreateBrands < ActiveRecord::Migration[5.0]
   def change
-    create_table :collections do |t|
+    create_table :brands do |t|
       t.string :category
       t.integer :owner_id
 

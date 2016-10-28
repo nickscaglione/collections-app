@@ -8,3 +8,6 @@ Deckbuilding:
     - form will iterate through all cards while iterating through **each** card (card.count.times do...)
       - each card has a checkbox
     - submit
+
+Refactor:
+  - most controllers #create and #update actions

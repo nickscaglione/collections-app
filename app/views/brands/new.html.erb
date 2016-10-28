@@ -4,9 +4,9 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for(@collection) do |f| %>
+<%= form_for(@brand) do |f| %>
 
-  <p><%= f.text_field :category, placeholder: "Collection category" %></p>
+  <p><%= f.text_field :category, placeholder: "brand category" %></p>
 
   <%= f.submit %>
 

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :owners
   resources :users, except: :new
   resources :cards
-  resources :collections
+  resources :brands
   get '/register' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

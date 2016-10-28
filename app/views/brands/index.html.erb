@@ -1,4 +1,4 @@
 <h1>All Collections</h1>
-<ul><% @collections.each do |collect| %>
-<li><%= link_to collect.owner.name, owner_path(collect.owner) %>'s <%= link_to collect.category, collection_path(collect) %></li>
+<ul><% @brands.each do |collect| %>
+<li><%= link_to collect.owner.name, owner_path(collect.owner) %>'s <%= link_to collect.category, brand_path(collect) %></li>
 <% end %></ul>

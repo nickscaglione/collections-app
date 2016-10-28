@@ -1,9 +1,9 @@
 <h1><%= @owner.name %>'s decks</h1>
 
 <ul><% @my_decks.each do |deck| %>
-  <li><%= deck.name %></li>
+  <li><%= link_to deck.name, deck_path(deck) %></li>
     <ul> <% deck.cards_with_count.each do |array| %>
-<li>        <%= array[0] %>x <%= array[1].name %> </li> 
+<li>        <%= array[0] %>x <%= link_to array[1].name, card_path(array[1]) %> </li> 
         <% end %></ul>
 <% end %>
 </ul>

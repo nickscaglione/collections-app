@@ -1,8 +1,8 @@
-<h1><%= @owner.name %>'s <%= @deck.brand.category %> deck</h1>
-<%= @deck.name %>
-
+<h1><%= @owner.name %>'s <%= @deck.name %> deck</h1>
 <ul><% @deck.cards_with_count.each do |array| %>
-<li>      <%= array[0] %>x <%= array[1].name %> </li> 
+<li>      <%= array[0] %>x <%= link_to array[1].name, card_path(array[1]) %> </li> 
         <% end %></ul>
 
 </ul>
+
+<%= link_to "Back to User's other decks", see_decks_path(@owner.id) %>

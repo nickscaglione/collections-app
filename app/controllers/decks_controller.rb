@@ -24,7 +24,7 @@ class DecksController < ApplicationController
       redirect_to login_path
     else
       @deck = Deck.find(params[:id])
-       @owner = Owner.find_by(user_id: @deck.owner.id)
+      @owner = Owner.find_by(user_id: @deck.owner.id)
     end
 
   end

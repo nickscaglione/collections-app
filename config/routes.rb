@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/home' => 'users#show', as: :home
   resources :cards
   resources :brands
-  resources :decks 
-  get '/owners/:id/decks' => 'decks#index'
+  resources :decks, except: [:index]
+  get '/owners/:id/decks' => 'decks#index', as: :see_decks
   get '/register' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

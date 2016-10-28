@@ -4,7 +4,7 @@
 from the <%= link_to @card.brand.category, brand_path(@card.brand) %> brand.
 <% if @card.decks %>
 <% @card.decks.uniq.each do |deck| %>
- featured in the <%= deck.name %> deck
+ featured in the <%= link_to deck.name, deck_path(deck) %> deck
   <% end %> <% end %>
 <br></br>
 <p><%= link_to "Edit Card", edit_card_path(@card)  %></p>

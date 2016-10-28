@@ -13,4 +13,15 @@ def owner
   self.brand.owner
 end
 
+def cards_with_count
+  cards = []
+  self.card_decks.each do |card_deck|
+    card = Card.find(card_deck.card_id)
+    count = card_deck.card_count
+    cards << [count, card]
+  end 
+    cards
+  end 
+
+
 end

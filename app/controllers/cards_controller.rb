@@ -15,9 +15,9 @@ class CardsController < ApplicationController
     # @card.current_user = @user
     @user = User.find(current_user)
     if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+      @collection = Brand.create(owner: @user.owner, category: params[:collection])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
+      @collection = Brand.find_by(category: params[:card][:collection], owner: @user.owner)
     end
         @user.owner.collections.each do |collection|
             collection.cards.each do |card|
@@ -55,9 +55,9 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @user = User.find(current_user)
     if params[:card][:collection] == "other"
-      @collection = Collection.create(owner: @user.owner, category: params[:collection])
+      @collection = Brand.create(owner: @user.owner, category: params[:collection])
     else
-      @collection = Collection.find_by(category: params[:card][:collection], owner: @user.owner)
+      @collection = Brand.find_by(category: params[:card][:collection], owner: @user.owner)
       #
     end
     params[:card][:collection_id] = @collection.id

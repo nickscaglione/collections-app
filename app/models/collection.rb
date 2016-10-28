@@ -1,4 +1,4 @@
-class Collection < ApplicationRecord
+class Brand < ApplicationRecord
   has_many :cards
   belongs_to :owner
   has_many :decks

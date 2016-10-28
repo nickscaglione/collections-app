@@ -8,4 +8,12 @@ class Owner < ApplicationRecord
     user = User.find(self.user_id)
   end
 
+  def decks
+    decks = []
+    self.brands.each do |brand|
+      decks << brand.decks
+    end
+    decks.flatten!
+  end
+
 end

@@ -5,4 +5,12 @@ class Deck < ApplicationRecord
   # belongs_to :owner, through: :cards
   #validate :car
   
+def brand
+  self.cards.first.brand
+end
+
+def owner
+  self.brand.owner
+end
+
 end

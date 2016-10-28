@@ -17,4 +17,15 @@ class Brand < ApplicationRecord
       end
     end 
   end
+
+  def decks
+    decks = []
+    self.cards.each do |card|
+      card.decks.each do |deck|
+        decks << deck 
+      end
+    end
+    decks
+  end
+
 end

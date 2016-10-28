@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :brands
   resources :decks, except: [:index]
+  get '/brands/:id/new' => "decks#new"
   get '/owners/:id/decks' => 'decks#index', as: :see_decks
   get '/register' => 'users#new'
   get '/login' => 'sessions#new'

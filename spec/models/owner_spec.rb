@@ -1,3 +1,4 @@
+require 'byebug'
 require 'rails_helper'
 
 RSpec.describe Owner, :type => :model do
@@ -14,5 +15,12 @@ RSpec.describe Owner, :type => :model do
     end 
   end
 
+  describe "#decks" do 
 
+    it "can produce the name of the owner's deck" do 
+      do_things
+      #byebug
+      expect(@marc_coll.decks.first).to eq(@deck)
+    end 
+  end 
 end

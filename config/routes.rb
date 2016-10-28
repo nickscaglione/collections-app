@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :brands
   resources :decks 
+  get '/owners/:id/decks' => 'decks#index'
   get '/register' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

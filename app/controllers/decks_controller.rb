@@ -23,8 +23,19 @@ class DecksController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @owner = Owner.find_by(user_id: current_user.id)
-      # @owner = Owner.find_by(user_id: params[])
+      @deck = Deck.find(params[:id])
+       @owner = Owner.find_by(user_id: @deck.owner.id)
+    end
+
+  end
+
+  def index
+
+    if current_user == nil
+      redirect_to login_path
+    else
+      #@owner = Owner.find_by(user_id: current_user.id)
+       @owner = Owner.find_by(user_id: params[:id])
     end
       @my_decks = []
       Deck.all.each do |deck|
@@ -33,9 +44,5 @@ class DecksController < ApplicationController
         end
       end 
     
-
-  end
-
-  def index
   end
 end

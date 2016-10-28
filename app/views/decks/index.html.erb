@@ -1,2 +1,9 @@
-<h1>Decks#index</h1>
-<p>Find me in app/views/decks/index.html.erb</p>
+<h1><%= @owner.name %>'s decks</h1>
+
+<ul><% @my_decks.each do |deck| %>
+  <li><%= deck.name %></li>
+    <ul> <% deck.cards_with_count.each do |array| %>
+<li>        <%= array[0] %>x <%= array[1].name %> </li> 
+        <% end %></ul>
+<% end %>
+</ul>

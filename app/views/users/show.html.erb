@@ -2,7 +2,10 @@
 
 <p><%= link_to "My Collections", owner_path(@owner) %></p>
 
-<p><%= form_tag('/logout') do %>
-<%= submit_tag "Log Me Out" %>
-
-<% end %></p>
+<div class='row'>
+  <div class='col-md-4 col-md-offset-4'>
+    <p><%= form_tag('/logout') do %>
+    <%= submit_tag "Log Me Out", class: 'btn btn-primary' %>
+    <% end %></p>
+  </div>
+</div>

@@ -2,12 +2,11 @@
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 
-
-<h2>Sign in</h2>
-
-<!-- error message iterator here -->
-
 <div class="row">
+  <div class="col-md-2 col-md-offset-5">
+    <h2><center>Log In</center></h2>
+  </div>
+<!-- error message iterator here -->
   <div class="col-md-6 col-md-offset-3">
     <%= form_tag '/login' do |f| %>
 
@@ -18,9 +17,12 @@
       <%= password_field_tag :password %>
 
       <%= submit_tag "Log In", :id => "submit", :name => "submit", class: "btn btn-primary" %>
-
     <% end %>
   </div>
 </div>
-<br>
-<%= link_to "New user?", register_path %>
+<br />
+<div class="row">
+  <div class = "col-md-6 col-md-offset-3">
+    <%= link_to "Sign Up", register_path, class: "btn btn-primary", style: "width:100%; text-align:center;"%>
+  </div>
+</div>

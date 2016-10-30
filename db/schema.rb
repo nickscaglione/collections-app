@@ -38,15 +38,15 @@ ActiveRecord::Schema.define(version: 20161028131849) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "collectors", force: :cascade do |t|
+  create_table "decks", force: :cascade do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "decks", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20161028131849) do
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
     t.string   "password_digest"
-    t.integer  "collector_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

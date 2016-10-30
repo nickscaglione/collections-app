@@ -1,6 +1,14 @@
-<% if session[:user_id] == nil %>
-  <%= link_to "Register", register_path %>
-  <%= link_to "Login", login_path %>
-<% else %>
-  <%= link_to "My Info", home_path %>
-<% end %>
+<div class="row">
+  <% if session[:user_id] == nil %>
+    <div class='col-md-3 col-md-offset-3'>
+      <%= link_to "Register", register_path, class: "btn btn-primary", style:"width: 100%;" %>
+    </div>
+    <div class='col-md-3'>
+      <%= link_to "Login", login_path, class: "btn btn-primary", style:"width: 100%;" %>
+    </div>
+  <% else %>
+    <div class='col-md-6 col-md-offset-3'>
+      <%= link_to "My Info", home_path, class: "btn btn-primary", style:"width: 100%;" %>
+    </div>
+  <% end %>
+</div>

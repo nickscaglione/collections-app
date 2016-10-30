@@ -13,13 +13,13 @@
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "Card Collector!", '#', id: "logo" %>
+        <%= link_to "Card Collector!", home_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   '#' %></li>
-            <li><%= link_to "Collections",   '#' %></li>
+            <li><%= link_to "Home", home_path %></li>
+            <li><%= link_to "Collections", brands_path%></li>
             <li><%= link_to "Decks", '#' %></li>
-            <li><%= link_to "Cards", '#' %></li>
+            <li><%= link_to "Cards", cards_path %></li>
           </ul>
         </nav>
       </div>

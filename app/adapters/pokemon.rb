@@ -3,7 +3,7 @@ require 'byebug'
 
 class Pokemon
 
-  def find_card(card_name)
+  def self.find_card(card_name)
     cards = Pokemon::Card.where(set_code: 'base1').where(set: 'Base').where(name: card_name).where(series: 'Base').all
     cards.each do |x| 
       puts x.name
@@ -14,6 +14,6 @@ class Pokemon
   end 
 
 end 
-find_card('Pikachu')
+Pokemon.find_card('Pikachu')
 
 #https://github.com/PokemonTCG/pokemon-tcg-sdk-ruby for more card methods

@@ -3,8 +3,8 @@ require 'byebug'
 
 class MagicTheGathering
 
-  def find_card(card_name)
-    cards = MTG::Card.where(name: card_name).all
+  def self.find_card(card_name)
+    cards = MTG::Card.where(name: card_name).where(set: "KLD").all
     cards.each do |card|
       puts card.name
       puts card.image_url
@@ -16,6 +16,6 @@ class MagicTheGathering
 
 end 
 
-find_card("Swamp")
+MagicTheGathering.find_card("Swamp")
 
 # https://github.com/MagicTheGathering/mtg-sdk-ruby for more card methods

@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   def require_logged_in
     flash[:target_path] = request.path if !current_user
+    flash[:notice] = "You need to be logged in to view that page"
     redirect_to controller: 'sessions', action: 'new' unless current_user
   end
 

@@ -9,3 +9,5 @@
 <ul><% @brand.cards.each do |card| %>
 <li><%= card.count %>x <%= link_to card.name, card_path(card) %></li>
 <% end %></ul>
+
+<%= pie_chart(@cards) %>

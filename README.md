@@ -11,3 +11,4 @@ Deckbuilding:
 
 Refactor:
   - most controllers #create and #update actions
+  - current_user should return an id rather than a User instance (we currently call current_user.id everywhere)

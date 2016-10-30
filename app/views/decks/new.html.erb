@@ -1,0 +1,13 @@
+<%= form_tag(decks_path) do %>
+  <%= text_field_tag :name, "Name" %>
+  <%= label_tag :name, "Deck Name" %>
+<%= label_tag :cards, "Cards" %>
+<% @brand.cards.each do |card| %>
+<% card.count.times do %>
+<p><%= label_tag :card, card.name  %>
+<%= check_box_tag :"card[]", card.id, checked=false, style:"width:auto;" %> </p>
+<% end %>  
+<% end %>
+
+  <%= submit_tag "Create Deck", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+<% end %>

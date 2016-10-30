@@ -1,0 +1,10 @@
+<h1><%= @owner.name %>'s <%= @deck.name %> deck</h1>
+<ul><% @deck.cards_with_count.each do |array| %>
+<li>      <%= array[0] %>x <%= link_to array[1].name, card_path(array[1]) %> </li>
+        <% end %></ul>
+
+</ul>
+
+<%= link_to "Edit this deck", edit_deck_path(@deck) %>
+<br>
+<%= link_to "Back to User's other decks", see_decks_path(@owner.id) %>

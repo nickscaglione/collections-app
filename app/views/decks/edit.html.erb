@@ -1,0 +1,18 @@
+<h4>Edit "<%= @deck.name %>"</h4>
+
+<%= form_tag deck_path(@deck), method: "patch" do %>
+
+  <% @deck.card_decks.each do |card_deck| %>
+    <%= label_tag card_deck.card.name %>
+    <%= number_field_tag("card[#{card_deck.card.id}]", card_deck.card_count) %>
+  <% end %>
+
+  <h6>Unused cards:</h6>
+  <% @unused_cards.each do |card| %>
+    <%= label_tag card.name %>
+    <%= number_field_tag("card[#{card.id}]", 0) %>
+  <% end %>
+
+  <%= submit_tag %>
+
+<% end %>

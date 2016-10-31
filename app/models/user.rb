@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # belongs_to :owner
   validates :user_name, uniqueness: true
 attr_accessor :owner
+
  def capitalize
     self[:user_name].capitalize 
   end

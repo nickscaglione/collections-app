@@ -11,4 +11,4 @@
 </p>
 <%= link_to "Edit this deck", edit_deck_path(@deck) %>
 <br>
-<%= link_to "Back to user's other decks", see_decks_path(@owner.id) %>
+<%= link_to "Back to user's other decks", see_decks_path(@deck.owner) %>

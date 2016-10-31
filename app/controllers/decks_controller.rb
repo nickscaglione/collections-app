@@ -5,11 +5,15 @@ class DecksController < ApplicationController
     if current_user == nil
       redirect_to login_path
     else
-      @owner = Owner.find_by(user_id: current_user.id)
+      @owner = current_user.owner
     end
-    @brand = Brand.find(params[:id])
 
   end
+
+  def choose
+    @owner = Owner.find_by(user_id: current_user.id)
+    @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
+  end 
 
   def create
     # byebug
@@ -50,6 +54,7 @@ class DecksController < ApplicationController
     end 
     @deck = Deck.find_by_id(params[:id]) 
     if !@deck  
+      @owner = current_user.owner
       redirect_to(see_decks_path(current_user), :notice => 'No Deck With That ID')
     else
       @owner = Owner.find_by(user_id: @deck.owner.id)
@@ -63,7 +68,7 @@ class DecksController < ApplicationController
       redirect_to login_path
     else
       #@owner = Owner.find_by(user_id: current_user.id)
-       @owner = Owner.find_by(user_id: params[:id])
+      @owner = current_user.owner
     end
       @my_decks = []
       Deck.all.each do |deck|
@@ -78,6 +83,7 @@ class DecksController < ApplicationController
     @deck = Deck.find(params[:id])
     #byebug
     @deck.delete
+    @owner = current_user.owner
     redirect_to see_decks_path(current_user)
   end
 

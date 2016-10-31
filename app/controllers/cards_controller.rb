@@ -16,7 +16,6 @@ class CardsController < ApplicationController
     # byebug
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
- 
     @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id) 
     if @brand.api_name == "Pokemon"
      @card_options =   PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
@@ -27,29 +26,21 @@ class CardsController < ApplicationController
   end 
 
   def create
-    byebug
+    # byebug
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
-    # if params[:card][:brand] == "other"
-    #   @brand = Brand.create(owner: @owner, category: params[:brand])
-    # else
-    # @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
-    # end
-
-   @card = Card.create(name: params[:name], image_url: params[:card][:image_url], count: params[:card][:count], brand_id: params[:brand_id]) 
-   
-        # @owner.brands.each do |brand|
-        #     brand.cards.each do |card|
-        #         if card.name == params[:card][:name] 
-        #           flash[:notice] = "you already have some of those! try editing"
-        #         render :new and return
-        #       end
-        #    end 
-        #   end
-
-    # @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
-    
-    redirect_to card_path(@card)
+    @card = Card.new(name: params[:name], image_url: params[:card][:image_url], count: params[:card][:count], brand_id: params[:brand_id]) 
+    if !@card.save
+      flash[:notice] = "You need at least 1 of the card to add it!" 
+      @card_options = [[@card.name, @card.image_url]] 
+      # byebug
+        @card = Card.new
+        @owner = Owner.find_by(user_id: current_user.id)
+        @brand = Brand.find(params[:brand_id]) 
+      render :choose
+    else
+        redirect_to card_path(@card)
+    end    
   end
 
 

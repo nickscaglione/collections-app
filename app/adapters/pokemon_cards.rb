@@ -19,6 +19,7 @@ class PokemonCards
     set = Pokemon::Set.where(name: set_name).all.first
     set.release_date.split("/").last.to_i
   end 
+
 end 
 
 # Pokemon.find_card('Pikachu')

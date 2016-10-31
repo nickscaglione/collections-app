@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <%= form_for @card do |f| -%>
 <% @card_options.each do |card| %>
     <%= image_tag card[1] %>

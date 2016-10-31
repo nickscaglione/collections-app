@@ -5,7 +5,7 @@ class BrandsController < ApplicationController
   end
 
   def index
-    byebug
+    # byebug
     @brands = Brand.all
   end
 
@@ -47,10 +47,12 @@ class BrandsController < ApplicationController
     @owner = Owner.find_by(user_id: current_user.id)
   end
 
+  
+
   private
 
   def brand_params
-    {category: params[:brand][:category], owner: Owner.find_by(user_id: current_user.id)}
+    {category: params[:brand][:category], owner: Owner.find_by(user_id: current_user.id), api_name: params[:brand][:api_name]}
   end
 
 

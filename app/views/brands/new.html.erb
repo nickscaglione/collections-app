@@ -7,7 +7,10 @@
 <%= form_for(@brand) do |f| %>
 
   <p><%= f.text_field :category, placeholder: "brand category" %></p>
-
+A Title 
+<p>  <%= f.radio_button :api_name, "Pokemon" %> POKEMON </p>
+<p>  <%= f.radio_button :api_name, "Magic The Gathering" %> MAGIC </p>
+<p><%= f.radio_button :api_name, "None" %> NONE</p>
   <%= f.submit %>
 
 <% end %>

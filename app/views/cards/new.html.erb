@@ -2,13 +2,15 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for @card do |f| -%>
-<p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
-<p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
-Collection
+
+
+<p><%= form_tag cards_new_path do %>
+<%= label_tag "Which Collection Is This Card For?" %>
 <% @owner.brands.each do |brand| %>
-<p><%= f.radio_button :brand, brand.category %>  <%= f.label :brand, brand.category %> </p>
+<p><%= radio_button_tag :brand, brand.category %>  <%= label_tag :brand, brand.category %> </p>
 <% end %>
-<%= f.radio_button :brand, 'other' %>  <%= text_field_tag :brand, 'new brand' %>
-<p><%= f.submit "Create Card", :name => 'submit', :disable_with => 'Creating Carding...' %>
-</p><% end %>
+<p><%= label_tag "Earliest Possible Release Year" %><%= select_year(1995, start_year: 1995, end_year: 2016, field_name: 'year_min') %> </p>
+<p><%= label_tag "Latest Possible Release Year" %> <%= select_year(Time.now, start_year: 2016, end_year: 1995, field_name: 'year_max') %> </p>
+<p>   <%= label_tag "search for your card" %><%= text_field_tag :search_term %></p>
+  <%= submit_tag "Search"%>
+<% end %>

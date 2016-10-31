@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
   post '/delete_card' => 'cards#destroy'
-
+  post '/cards/new' => 'cards#new'
 
 end

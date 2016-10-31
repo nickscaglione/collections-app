@@ -12,12 +12,13 @@ class Brand < ApplicationRecord
   #     brand.api = "Pokemon"
   #   elsif brand.api_id == 2
   #     brand.api = "Magic The Gathering"
-  #   end 
-  # end 
+  #   end
+  # end
 
   def unique_category?
     if current_user
-      if current_user.owner.brands.pluck(:category).include?(self.category)
+      used_brands = current_user.owner.brands.pluck(:category) - [Brand.find(self.id).category]
+      if used_brands.include?(self.category)
         errors.add(self.category, "category already in use!")
       end
     end

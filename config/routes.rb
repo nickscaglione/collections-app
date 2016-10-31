@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :cards
   post '/choose_card' => 'cards#choose'
   post '/choose_deck' => 'decks#choose'
-
+  
   resources :brands
   resources :decks, except: [:index]
   # get '/brands/:id/new' => "decks#new"

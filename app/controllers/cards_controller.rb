@@ -77,12 +77,17 @@ class CardsController < ApplicationController
     end
   end
 
-
   def update
     @card = Card.find(params[:id])
     @owner = Owner.find_by(user_id: current_user.id)
-    @card.update(params[:card].permit(:count))
-    redirect_to card_path(@card)
+    if params[:card][:count].to_i < 1
+      flash[:notice] = "Can't have zero of a card! Maybe you meant to delete?"
+      
+      redirect_to edit_card_path(@card)
+    else
+      @card.update(params[:card].permit(:count))
+      redirect_to card_path(@card)
+    end
   end
 
   def destroy

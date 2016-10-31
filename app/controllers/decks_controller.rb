@@ -1,15 +1,21 @@
 require 'byebug'
 class DecksController < ApplicationController
+    before_action :require_logged_in
+
   def new
     @deck = Deck.new
     if current_user == nil
       redirect_to login_path
     else
-      @owner = Owner.find_by(user_id: current_user.id)
+      @owner = current_user.owner
     end
-    @brand = Brand.find(params[:id])
 
   end
+
+  def choose
+    @owner = Owner.find_by(user_id: current_user.id)
+    @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
+  end 
 
   def create
     # byebug
@@ -50,7 +56,8 @@ class DecksController < ApplicationController
     end 
     @deck = Deck.find_by_id(params[:id]) 
     if !@deck  
-      redirect_to(see_decks_path(current_user), :notice => 'Record not found')
+      @owner = current_user.owner
+      redirect_to(see_decks_path(current_user), :notice => 'No Deck With That ID')
     else
       @owner = Owner.find_by(user_id: @deck.owner.id)
     end 
@@ -63,7 +70,7 @@ class DecksController < ApplicationController
       redirect_to login_path
     else
       #@owner = Owner.find_by(user_id: current_user.id)
-       @owner = Owner.find_by(user_id: params[:id])
+      @owner = current_user.owner
     end
       @my_decks = []
       Deck.all.each do |deck|
@@ -73,5 +80,15 @@ class DecksController < ApplicationController
       end
 
   end
+
+  def destroy
+    @deck = Deck.find(params[:id])
+    #byebug
+    @deck.delete
+    @owner = current_user.owner
+    redirect_to see_decks_path(current_user)
+  end
+
+
 
 end

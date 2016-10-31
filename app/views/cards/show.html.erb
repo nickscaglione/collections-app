@@ -1,7 +1,7 @@
 <%= link_to @card.brand.owner.name, owner_path(@card.brand.owner) %>'s
 <%= @card.count %>x
 <%= @card.name %>
-from the <%= link_to @card.brand.category, brand_path(@card.brand) %> brand.
+from their <%= link_to @card.brand.category, brand_path(@card.brand) %> collection.
 <% if @card.decks %>
 <% @card.decks.uniq.each do |deck| %>
  featured in the <%= link_to deck.name, deck_path(deck) %> deck
@@ -10,6 +10,9 @@ from the <%= link_to @card.brand.category, brand_path(@card.brand) %> brand.
 <% if @card.image_url %>
   <%= image_tag @card.image_url %>
 <% end %>
+<% if @card.owner.user_id == current_user.id %>
+<p><%= link_to "Edit Card", edit_card_path(@card)  %></p>  
+<% end %>
 
-<p><%= link_to "Edit Card", edit_card_path(@card)  %></p>
-
+<p>
+<%= link_to "Back to my cards", cards_path  %></p>

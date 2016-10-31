@@ -1,3 +1,8 @@
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <h3>Update How Many <%= @card.name %> You Have</h3>
 <%= form_for @card do |f| -%>
 <p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
@@ -7,4 +12,4 @@ Collection
 </p><% end %>
 
 <%= button_to "Delete This Card (all of them!)", {:controller => :cards,
-      :action => 'destroy', :id => @card.id }, :method => :delete %>
+      :action => 'destroy', :id => @card.id, confirm: 'Are you sure?' }, :method => :delete %>

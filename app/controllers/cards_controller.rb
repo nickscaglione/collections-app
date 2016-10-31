@@ -1,5 +1,7 @@
 require 'byebug'
 class CardsController < ApplicationController
+    before_action :require_logged_in
+
   def new
     # byebug
     # @user = User.find(3)
@@ -22,8 +24,9 @@ class CardsController < ApplicationController
     else
       @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
       if @brand.api_name == "Pokemon"
+        # byebug
        @card_options = PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
-      elsif @brand.api_name == "Magic The Gathering"
+      elsif @brand.api_name == "MTG"
         @card_options = MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
       end
     end
@@ -55,9 +58,9 @@ class CardsController < ApplicationController
     @magic = []
     @cards.each do |card|
       # byebug
-      if card.brand.category == "Pokemon"
+    if card.brand.api_name == "Pokemon"
       @poke << [card.name, card.count]
-    elsif card.brand
+    elsif card.brand.api_name == "MTG"
       @magic << [card.name, card.count]
     end
   end
@@ -74,12 +77,17 @@ class CardsController < ApplicationController
     end
   end
 
-
   def update
     @card = Card.find(params[:id])
     @owner = Owner.find_by(user_id: current_user.id)
-    @card.update(params[:card].permit(:count))
-    redirect_to card_path(@card)
+    if params[:card][:count].to_i < 1
+      flash[:notice] = "Can't have zero of a card! Maybe you meant to delete?"
+      
+      redirect_to edit_card_path(@card)
+    else
+      @card.update(params[:card].permit(:count))
+      redirect_to card_path(@card)
+    end
   end
 
   def destroy
@@ -92,7 +100,7 @@ class CardsController < ApplicationController
   def show
     @card = Card.find_by_id(params[:id])
     if !@card
-      redirect_to(cards_path(current_user), :notice => 'Record not found')
+      redirect_to(cards_path(current_user), :notice => 'No Card With That ID')
     end
   end
 end

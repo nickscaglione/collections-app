@@ -2,6 +2,7 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
+<<<<<<< HEAD
 <%= form_for @card do |f| %>
 
   <div class="container">
@@ -20,7 +21,7 @@
     <% end %>
   </div>
 
-  <%= hidden_field_tag :name, @card_options.first[0] %>
+  <%= hidden_field_tag :name, @card_options.first.first.split(" ").last %>
   <%= hidden_field_tag :brand_id, @brand.id %>
   <%= f.label :count %>
   <%= f.number_field :count %>

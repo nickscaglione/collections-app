@@ -16,3 +16,8 @@
   <%= submit_tag %>
 
 <% end %>
+
+
+
+<%= button_to "Delete This Deck (all of it! and all associated cards!)", {:controller => :decks,
+      :action => 'destroy', :id => @deck.id, confirm: 'Are you sure?' }, :method => :delete %> 

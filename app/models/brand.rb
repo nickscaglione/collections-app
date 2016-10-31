@@ -1,9 +1,10 @@
 class Brand < ApplicationRecord
-  has_many :cards
+  has_many :cards, dependent: :destroy 
   belongs_to :owner
-  has_many :card_decks
-  has_many :decks
-  validate :unique_category?
+  has_many :card_decks, dependent: :destroy
+  has_many :decks, dependent: :destroy
+  validate :unique_category?, on: :update
+  validate :uniquer_category?, on: :create
 
   attr_accessor :current_user
 
@@ -14,6 +15,15 @@ class Brand < ApplicationRecord
   #     brand.api = "Magic The Gathering"
   #   end
   # end
+
+  def uniquer_category?
+    if current_user
+      used_brands = current_user.owner.brands.pluck(:category)
+      if used_brands.include?(self.category)
+        errors.add(self.category, "category already in use!")
+      end
+    end
+  end
 
   def unique_category?
     if current_user

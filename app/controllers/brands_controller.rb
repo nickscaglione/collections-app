@@ -1,4 +1,6 @@
 class BrandsController < ApplicationController
+    before_action :require_logged_in
+
   def new
     @user = User.find(current_user)
     @brand = Brand.new
@@ -38,15 +40,26 @@ class BrandsController < ApplicationController
 
   def show
     #@brand = brand.find_by(user_id: current_user)
-    @brand = Brand.find(params[:id])
+    @brand = Brand.find_by_id(params[:id])
     # byebug
-    @cards = []
-    @brand.cards.each do |card| 
-       @cards << [card.name, card.count]
+    if !@brand
+      redirect_to(brands_path(current_user), :notice => 'No Collection With That ID')
+    else
+      @cards = []
+      @brand.cards.each do |card| 
+         @cards << [card.name, card.count]
+      end 
+      @owner = Owner.find_by(user_id: current_user.id)
     end 
-    @owner = Owner.find_by(user_id: current_user.id)
   end
 
+  
+  def destroy
+    @brand = Brand.find(params[:id])
+    #byebug
+    @brand.delete
+    redirect_to brands_path(current_user)
+  end
   
 
   private

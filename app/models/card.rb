@@ -4,6 +4,5 @@ class Card < ApplicationRecord
   has_one :owner, through: :brand
   has_many :decks, through: :card_decks
 
-  
-end
 
+end

@@ -9,12 +9,12 @@ class MagicTheGathering
       puts card.name
       puts card.image_url
       puts card.set
-    end 
+    end
 
   end
 
 
-end 
+end
 
 MagicTheGathering.find_card("Swamp")
 

@@ -7,10 +7,9 @@
 <%= form_for(@brand) do |f| %>
 
   <p><%= f.text_field :category, placeholder: "brand category" %></p>
-Associated Api? 
+Associated API 
 <p>  <%= f.radio_button :api_name, "Pokemon" %> <%= f.label :api_name, "Pokemon" %> </p>
 <p>  <%= f.radio_button :api_name, "MTG" %> <%= f.label :api_name, "Magic The Gathering" %> </p>
-<p><%= f.radio_button :api_name, "None" %> <%= f.label :api_name, "N/A" %> </p>
   <%= f.submit %>
 
 <% end %>

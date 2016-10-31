@@ -1,5 +1,7 @@
 require 'byebug'
 class DecksController < ApplicationController
+    before_action :require_logged_in
+
   def new
     @deck = Deck.new
     if current_user == nil

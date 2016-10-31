@@ -1,5 +1,7 @@
 require 'byebug'
 class CardsController < ApplicationController
+    before_action :require_logged_in
+
   def new
     # byebug
     # @user = User.find(3)

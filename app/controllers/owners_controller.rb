@@ -1,5 +1,6 @@
 require 'byebug'
 class OwnersController < ApplicationController
+  before_action :require_logged_in
 
   def index
     @owners = Owner.all

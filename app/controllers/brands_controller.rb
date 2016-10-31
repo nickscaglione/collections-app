@@ -1,4 +1,6 @@
 class BrandsController < ApplicationController
+    before_action :require_logged_in
+
   def new
     @user = User.find(current_user)
     @brand = Brand.new

@@ -34,6 +34,7 @@ class Brand < ApplicationRecord
       WHERE cards.brand_id = #{self.id}
       GROUP BY cards.id ORDER BY counter DESC LIMIT 1
     SQL
+    # find_by_sql returns an array
     Card.find_by_sql(sql).first
   end
 

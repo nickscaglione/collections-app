@@ -24,7 +24,7 @@ class CardsController < ApplicationController
       if @brand.api_name == "Pokemon"
         # byebug
        @card_options = PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
-      elsif @brand.api_name == "Magic The Gathering"
+      elsif @brand.api_name == "MTG"
         @card_options = MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
       end
     end
@@ -56,9 +56,9 @@ class CardsController < ApplicationController
     @magic = []
     @cards.each do |card|
       # byebug
-    if card.brand.category == "Pokemon"
+    if card.brand.api_name == "Pokemon"
       @poke << [card.name, card.count]
-    elsif card.brand
+    elsif card.brand.api_name == "MTG"
       @magic << [card.name, card.count]
     end
   end

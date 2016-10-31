@@ -14,8 +14,10 @@
 <br>
 <% end %></ul>
 
+<% if @owner.user_id == current_user.id  %>
 <p><%= link_to "Create A New Card", new_card_path %></p>
 <p><%= link_to "Create a New Collection", new_brand_path  %></p>
+<% end %>
 
 
 

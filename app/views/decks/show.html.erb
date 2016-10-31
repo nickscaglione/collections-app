@@ -8,7 +8,11 @@
 <p><% @deck.cards.each do |card| %>
     <%= image_tag card.image_url %>
 <% end %>
+
+
 </p>
-<%= link_to "Edit this deck", edit_deck_path(@deck) %>
+<% if @owner.user_id == current_user.id %>
+  <%= link_to "Edit this deck", edit_deck_path(@deck) %>
+<% end %>
 <br>
-<%= link_to "Back to user's other decks", see_decks_path(@deck.owner) %>
+<%= link_to "Back to my decks", see_decks_path %>

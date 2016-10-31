@@ -1,15 +1,15 @@
-<h3>Create a new Collection</h3>
-
 <% if flash[:notice] %>
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
+
+<h3>Create a New Collection</h3>
 
 <%= form_for(@brand) do |f| %>
 
   <p><%= f.text_field :category, placeholder: "brand category" %></p>
 Associated Api? 
 <p>  <%= f.radio_button :api_name, "Pokemon" %> <%= f.label :api_name, "Pokemon" %> </p>
-<p>  <%= f.radio_button :api_name, "Magic The Gathering" %> <%= f.label :api_name, "Magic The Gathering" %> </p>
+<p>  <%= f.radio_button :api_name, "MTG" %> <%= f.label :api_name, "Magic The Gathering" %> </p>
 <p><%= f.radio_button :api_name, "None" %> <%= f.label :api_name, "N/A" %> </p>
   <%= f.submit %>
 

@@ -43,8 +43,6 @@ class CardsController < ApplicationController
     end    
   end
 
-
-
   def index
     all = Card.all
     mine = all.select {|card| card.brand.owner.user_id == current_user.id}
@@ -76,15 +74,7 @@ class CardsController < ApplicationController
   def update
     @card = Card.find(params[:id])
     @owner = Owner.find_by(user_id: current_user.id)
-
-    if params[:card][:brand] == "other"
-      @brand = Brand.create(owner: @owner, category: params[:brand])
-    else
-      @brand = Brand.find_by(category: params[:card][:brand], owner: @user.owner)
-      #
-    end
-    params[:card][:brand_id] = @brand.id
-    @card.update(params[:card].permit(:brand_id, :name, :count))
+    @card.update(params[:card].permit(:count))
     redirect_to card_path(@card)
   end
 

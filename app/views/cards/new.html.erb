@@ -2,8 +2,6 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-
-
 <p><%= form_tag choose_card_path do %>
 <%= label_tag "Which Collection Is This Card For?" %>
 <% @owner.brands.each do |brand| %>

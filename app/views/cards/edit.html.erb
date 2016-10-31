@@ -1,23 +1,14 @@
+<h3>Update How Many <%= @card.name %> You Have</h3>
 <%= form_for @card do |f| -%>
-<p><%= f.label :Name, "Name" %>  <%= f.text_field :name %></p>
 <p><%= f.label :Count, "Count" %>  <%= f.number_field :count %></p>
 Collection
-<% @owner.brands.each do |brand| %>
 
-<% if brand.category == @card.brand.category %>
-<p>  <%= f.radio_button :brand, brand.category, checked: true %>  <%= f.label :brand, brand.category %> </p>
-<% else %>
-<p>  <%= f.radio_button :brand, brand.category%>  <%= f.label :brand, brand.category %> </p>
-<% end %>
-<% end %>
-<p><%= f.submit "Update Card", :name => 'submit', :disable_with => 'Creating Carding...' %>
+<p><%= f.submit "Update Card Count", :name => 'submit', :disable_with => 'Creating Carding...' %>
 </p><% end %>
 
 
 
 
 
-
-<br></br>
 <%= button_to "Delete This Card (all of them!)", {:controller => :cards,
       :action => 'destroy', :id => @card.id }, :method => :delete %>

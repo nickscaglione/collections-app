@@ -11,6 +11,7 @@ class CardsController < ApplicationController
   end
 
   def create
+    
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
     if params[:card][:brand] == "other"

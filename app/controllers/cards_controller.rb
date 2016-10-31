@@ -22,6 +22,7 @@ class CardsController < ApplicationController
     else
       @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
       if @brand.api_name == "Pokemon"
+        # byebug
        @card_options = PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
       elsif @brand.api_name == "Magic The Gathering"
         @card_options = MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
@@ -92,7 +93,7 @@ class CardsController < ApplicationController
   def show
     @card = Card.find_by_id(params[:id])
     if !@card
-      redirect_to(cards_path(current_user), :notice => 'Record not found')
+      redirect_to(cards_path(current_user), :notice => 'No Card With That ID')
     end
   end
 end

@@ -1,3 +1,8 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+
 <h1><%= @owner.name %>'s decks</h1>
 
 <ul><% @my_decks.each do |deck| %>

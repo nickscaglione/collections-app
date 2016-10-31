@@ -50,7 +50,7 @@ class DecksController < ApplicationController
     end 
     @deck = Deck.find_by_id(params[:id]) 
     if !@deck  
-      redirect_to(see_decks_path(current_user), :notice => 'Record not found')
+      redirect_to(see_decks_path(current_user), :notice => 'No Deck With That ID')
     else
       @owner = Owner.find_by(user_id: @deck.owner.id)
     end 

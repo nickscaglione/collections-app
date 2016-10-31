@@ -35,14 +35,14 @@ input {
 }
 
 // begin custom radiobutton image
-input[type="radio"] {
+.image-radio > input[type="radio"] {
     display: none;
 }
-input[type="radio"] + label {
+.image-radio > input[type="radio"] + label {
     border: 10px solid transparent;
     border-radius: 8px
 }
-input[type="radio"]:checked + label {
+.image-radio > input[type="radio"]:checked + label {
     border: 10px solid #6CDBFF;
     border-radius: 8px
 }

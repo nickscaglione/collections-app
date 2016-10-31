@@ -12,19 +12,15 @@ class PokemonCards
     cards_array = cards.each_with_object([]) do |card, card_array|
       card_array << [card.name, card.image_url, PokemonCards.find_set_year(card.set)]
     end 
-
     cards_array.reject {|card| card.last < year_min || card.last > year_max}
-
   end 
-
-
 
   def self.find_set_year(set_name)
     set = Pokemon::Set.where(name: set_name).all.first
     set.release_date.split("/").last.to_i
   end 
-
 end 
+
 # Pokemon.find_card('Pikachu')
 
 #https://github.com/PokemonTCG/pokemon-tcg-sdk-ruby for more card methods

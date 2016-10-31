@@ -5,6 +5,7 @@ class BrandsController < ApplicationController
   end
 
   def index
+    byebug
     @brands = Brand.all
   end
 

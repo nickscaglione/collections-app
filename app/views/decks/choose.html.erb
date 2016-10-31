@@ -10,6 +10,7 @@
 <% card.count.times do %>
 <p><%= label_tag :card, card.name  %>
 <%= check_box_tag :"card[]", card.id, checked=false, style:"width:auto;" %> </p>
+
 <% end %>  
 <% end %>
 

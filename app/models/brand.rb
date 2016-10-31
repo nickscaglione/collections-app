@@ -44,6 +44,7 @@ class Brand < ApplicationRecord
     decks
   end
 
+
   # return the card in the brand that is featured in the most decks (number of times used in a deck not considered)
   def most_used_card
     sql = <<-SQL

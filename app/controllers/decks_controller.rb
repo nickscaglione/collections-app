@@ -15,6 +15,12 @@ class DecksController < ApplicationController
   def choose
     @owner = Owner.find_by(user_id: current_user.id)
     @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
+    @card_by_counts = @brand.cards.each_with_object([]) do |card, cards_array|
+      card.count.times do
+        cards_array << card
+      end
+    end 
+    # byebug 
   end 
 
   def create

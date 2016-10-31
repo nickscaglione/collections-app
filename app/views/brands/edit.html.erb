@@ -15,3 +15,8 @@
   <%= f.submit %>
 
 <% end %>
+
+
+<%= button_to "Delete This Collection (all of it! and all associated cards!)", {:controller => :brands,
+      :action => 'destroy', :id => @brand.id, confirm: 'Are you sure?' }, :method => :delete %>
+

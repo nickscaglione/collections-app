@@ -51,7 +51,7 @@ class CardsController < ApplicationController
     @magic = []
     @cards.each do |card| 
       # byebug
-      if card.brand.category == "Pokemon"
+    if card.brand.category == "Pokemon"
       @poke << [card.name, card.count]
     elsif card.brand
       @magic << [card.name, card.count]

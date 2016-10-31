@@ -48,6 +48,13 @@ class BrandsController < ApplicationController
   end
 
   
+  def destroy
+    @brand = Brand.find(params[:id])
+    #byebug
+    @brand.delete
+    redirect_to brands_path(current_user)
+  end
+  
 
   private
 

@@ -74,4 +74,13 @@ class DecksController < ApplicationController
 
   end
 
+  def destroy
+    @deck = Deck.find(params[:id])
+    #byebug
+    @deck.delete
+    redirect_to see_decks_path(current_user)
+  end
+
+
+
 end

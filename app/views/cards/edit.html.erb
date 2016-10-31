@@ -7,4 +7,4 @@ Collection
 </p><% end %>
 
 <%= button_to "Delete This Card (all of them!)", {:controller => :cards,
-      :action => 'destroy', :id => @card.id }, :method => :delete %>
+      :action => 'destroy', :id => @card.id, confirm: 'Are you sure?' }, :method => :delete %>

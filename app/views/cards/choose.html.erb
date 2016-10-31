@@ -2,14 +2,27 @@
   <div class="notice"><%= flash[:notice] %></div>
 <% end %>
 
-<%= form_for @card do |f| -%>
-<% @card_options.each do |card| %>
-    <%= image_tag card[1] %>
-    <%= f.radio_button :image_url, card[1] %>
-  <% end %>
+<%= form_for @card do |f| %>
+
+  <div class="container">
+    <% @card_options.each_slice(3) do |three_cards| %>
+    <div class="row">
+      <% three_cards.each do |card| %>
+        <div class="col-lg-4">
+          <span class="image-radio">
+            <%= f.radio_button :image_url, card[1], id: card[1] %>
+            <label for=<%=card[1]%>><%= image_tag(card[1]) %></label>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <% end %>
+  </div>
+
   <%= hidden_field_tag :name, @card_options.first[0] %>
   <%= hidden_field_tag :brand_id, @brand.id %>
   <%= f.label :count %>
   <%= f.number_field :count %>
-<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<%= f.submit "Submit", :disable_with => 'Submitting...' %>
 <% end %>

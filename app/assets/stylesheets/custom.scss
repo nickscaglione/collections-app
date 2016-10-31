@@ -34,6 +34,20 @@ input {
   height: auto !important;
 }
 
+// begin custom radiobutton image
+input[type="radio"] {
+    display: none;
+}
+input[type="radio"] + label {
+    border: 10px solid transparent;
+    border-radius: 8px
+}
+input[type="radio"]:checked + label {
+    border: 10px solid #6CDBFF;
+    border-radius: 8px
+}
+// end custom radiobutton image
+
 /* universal */
 
 body {

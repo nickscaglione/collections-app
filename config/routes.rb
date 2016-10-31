@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :show]
   get '/home' => 'users#show', as: :home
   resources :cards
+  post '/choose_card' => 'cards#choose'
   resources :brands
   resources :decks, except: [:index]
   get '/brands/:id/new' => "decks#new"

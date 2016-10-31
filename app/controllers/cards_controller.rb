@@ -10,14 +10,21 @@ class CardsController < ApplicationController
       @owner = Owner.find_by(user_id: current_user.id)
     end
 
-     # brand = Brand.find_by(name: params[:brand]) 
-     # if brand.api_name == "Pokemon"
-     #    PokemonCards.find_card(params[:search_term])
-     #  elsif brand.api_name == "Magic The Gathering"
-     #    MagicTheGathering.find_card(params[:search_term])
-     #  end 
-
   end
+
+  def choose
+    # byebug
+    @card = Card.new
+    @owner = Owner.find_by(user_id: current_user.id)
+ 
+    @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id) 
+    if @brand.api_name == "Pokemon"
+     @card_options =   PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
+    elsif @brand.api_name == "Magic The Gathering"
+      @card_options =  MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
+    end 
+
+  end 
 
   def create
     byebug
@@ -26,18 +33,21 @@ class CardsController < ApplicationController
     # if params[:card][:brand] == "other"
     #   @brand = Brand.create(owner: @owner, category: params[:brand])
     # else
-      @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
+    # @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
     # end
-        @owner.brands.each do |brand|
-            brand.cards.each do |card|
-                if card.name == params[:card][:name] 
-                  flash[:notice] = "you already have some of those! try editing"
-                render :new and return
-              end
-           end 
-          end
 
-    @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
+   @card = Card.create(name: params[:name], image_url: params[:card][:image_url], count: params[:card][:count], brand_id: params[:brand_id]) 
+   
+        # @owner.brands.each do |brand|
+        #     brand.cards.each do |card|
+        #         if card.name == params[:card][:name] 
+        #           flash[:notice] = "you already have some of those! try editing"
+        #         render :new and return
+        #       end
+        #    end 
+        #   end
+
+    # @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
     
     redirect_to card_path(@card)
   end

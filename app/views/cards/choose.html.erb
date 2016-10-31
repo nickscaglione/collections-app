@@ -1,0 +1,10 @@
+<%= form_for @card do |f| -%>
+<% @card_options.each do |card| %>
+    <%= image_tag card[1] %>
+    <%= f.radio_button :image_url, card[1] %>
+  <% end %>
+  <%= hidden_field_tag :name, @card_options.first[0] %> 
+  <%= hidden_field_tag :brand_id, @brand.id %> 
+  <%= f.number_field :count %>
+<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<% end %>

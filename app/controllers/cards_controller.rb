@@ -1,6 +1,7 @@
 require 'byebug'
 class CardsController < ApplicationController
   def new
+    # byebug
     # @user = User.find(3)
     @card = Card.new
     if current_user == nil
@@ -8,17 +9,25 @@ class CardsController < ApplicationController
     else
       @owner = Owner.find_by(user_id: current_user.id)
     end
+
+     # brand = Brand.find_by(name: params[:brand]) 
+     # if brand.api_name == "Pokemon"
+     #    PokemonCards.find_card(params[:search_term])
+     #  elsif brand.api_name == "Magic The Gathering"
+     #    MagicTheGathering.find_card(params[:search_term])
+     #  end 
+
   end
 
   def create
-    
+    byebug
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
-    if params[:card][:brand] == "other"
-      @brand = Brand.create(owner: @owner, category: params[:brand])
-    else
+    # if params[:card][:brand] == "other"
+    #   @brand = Brand.create(owner: @owner, category: params[:brand])
+    # else
       @brand = Brand.find_by(category: params[:card][:brand], owner: @owner)
-    end
+    # end
         @owner.brands.each do |brand|
             brand.cards.each do |card|
                 if card.name == params[:card][:name] 
@@ -29,6 +38,7 @@ class CardsController < ApplicationController
           end
 
     @card = Card.create(name: params[:card][:name], count: params[:card][:count], brand_id: @brand.id)
+    
     redirect_to card_path(@card)
   end
 

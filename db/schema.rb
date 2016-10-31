@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161028131849) do
   create_table "brands", force: :cascade do |t|
     t.string   "category"
     t.integer  "owner_id"
+    t.string   "api_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20161028131849) do
     t.string   "name"
     t.integer  "count"
     t.integer  "brand_id"
+    t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

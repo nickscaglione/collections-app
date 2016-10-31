@@ -9,23 +9,14 @@ class MagicTheGathering
 
     cards_array = cards.each_with_object([]) do |card, card_array|
       card_array << [card.name, card.image_url, MagicTheGathering.find_set_year(card.set)]
-    end 
+    end
 
-    # cards.each do |card|
-    #   puts card.name
-    #   puts card.image_url
-    #   puts card.set
-    # end 
     cards_array.reject {|card| card.last < year_min || card.last > year_max}
   end
 
   def self.find_set_year(set_name)
     set = MTG::Set.find(set_name)
     set.release_date.split("-").first.to_i
-  end 
+  end
 
-
-end 
-# MagicTheGathering.find_card("Swamp")
-
-# https://github.com/MagicTheGathering/mtg-sdk-ruby for more card methods
+end

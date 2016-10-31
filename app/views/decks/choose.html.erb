@@ -5,14 +5,23 @@
 <%= form_tag(decks_path) do %>
   <%= text_field_tag :name, "Name" %>
   <%= label_tag :name, "Deck Name" %>
-<%= label_tag :cards, "Cards" %>
-<% @brand.cards.each do |card| %>
-<% card.count.times do %>
-<p><%= label_tag :card, card.name  %>
-<%= check_box_tag :"card[]", card.id, checked=false, style:"width:auto;" %> </p>
 
-<% end %>  
-<% end %>
+  <%= label_tag :cards, "Cards" %>
+  <div class="container">
+    <% @card_by_counts.each_slice(3) do |three_cards| %>
+    <div class="row">
+      <% three_cards.each do |card| %>
+        <div class="col-lg-4">
+          <span class="image-radio">
+            <%= check_box_tag :"card[]",card.id %>
+            <label><%= image_tag(card.image_url) %></label>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <br>
+    <% end %>
+  </div>
 
   <%= submit_tag "Create Deck", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
 <% end %>

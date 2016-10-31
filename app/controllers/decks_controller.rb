@@ -48,13 +48,13 @@ class DecksController < ApplicationController
     if current_user == nil
       redirect_to login_path
     end 
-    if !Deck.find(params[:id]) 
-        redirect_to new_deck_path
-      else
-        @owner = Owner.find_by(user_id: @deck.owner.id)
+    @deck = Deck.find_by_id(params[:id]) 
+    if !@deck  
+      redirect_to(see_decks_path(current_user), :notice => 'Record not found')
+    else
+      @owner = Owner.find_by(user_id: @deck.owner.id)
+    end 
       # byebug
-    
-    end
   end
 
   def index
@@ -73,13 +73,5 @@ class DecksController < ApplicationController
       end
 
   end
-
-  private
-
-  def catch_not_found
-    yield
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_url, :flash => { :error => "Record not found." }
-  end 
 
 end

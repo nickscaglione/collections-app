@@ -90,10 +90,9 @@ class CardsController < ApplicationController
   end
 
   def show
-    if Card.find(params[:id]) == nil
-      redirect_to new_card_path
-    else
-      @card = Card.find(params[:id])
+    @card = Card.find_by_id(params[:id])
+    if !@card
+      redirect_to(cards_path(current_user), :notice => 'Record not found')
     end
   end
 end

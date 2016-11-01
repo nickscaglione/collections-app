@@ -24,6 +24,9 @@ class DecksController < ApplicationController
 
   def create
     # byebug
+    if params[:name].empty? 
+      params[:name] = "Name"
+    end
     @deck = Deck.create(name: params[:name])
     count_hash = {}
     params[:card].each do |card_id|
@@ -34,7 +37,7 @@ class DecksController < ApplicationController
       CardDeck.create(deck_id: @deck.id, card_id: card_id, card_count: card_count)
     end
     redirect_to see_decks_path(@deck.owner)
-  end
+  end 
 
   def edit
     @deck = Deck.find(params[:id])

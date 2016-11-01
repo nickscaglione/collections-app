@@ -44,7 +44,8 @@ RSpec.describe CardsController, :type => :feature do
       log_in
       @card = Card.find_by(name: "Bulbasaur")
       visit card_path(@card)
-      expect(page).to have_text("immediato's 1x Bulbasaur from their Pokemon collection. featured in the Marc's Starters deck")
+      expect(page).to have_text("immediato's 1x Bulbasaur from their Pokemon collection")
+      expect(page).to have_text("Marc's Starters")
       expect(page).to have_css("img[src='https://s3.amazonaws.com/pokemontcg/base1/44.jpg']")
     end
   end 
@@ -68,7 +69,9 @@ RSpec.describe CardsController, :type => :feature do
       editor
       fill_in("card[count]", :with => 4)
       click_button('Update Card Count')
-      expect(page).to have_text("immediato's 4x Bulbasaur from their Pokemon collection. featured in the Marc's Starters deck")
+      expect(page).to have_text("immediato's 4x Bulbasaur from their Pokemon collection")
+            expect(page).to have_text("Marc's Starters")
+
     end 
   end
 

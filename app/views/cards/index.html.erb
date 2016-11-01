@@ -8,5 +8,4 @@
 <li><%= card.count %>x <%= link_to card.name, card_path(card) %>, from <%= link_to card.brand.category, brand_path(card.brand) %></li>
 <% end %></ul>
 
-<%= pie_chart(@poke) %>
-<%= pie_chart(@magic) %>
+<div id="poke" style="width:50%; position:inline-block; float:left;"><%= pie_chart(@poke) %></div><div id="magic" style="width:50%; position:inline-block; float:right;"><%= pie_chart(@magic) %></div>

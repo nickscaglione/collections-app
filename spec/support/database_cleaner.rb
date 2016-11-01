@@ -4,7 +4,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each, js: true) do
@@ -19,5 +19,6 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
 
 #get deets at http://www.virtuouscode.com/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/

@@ -43,6 +43,7 @@ RSpec.describe DecksController, :type => :feature do
       choice_doer
       visit edit_deck_path(@deck)
       @new_card = Card.all.last
+      byebug
       expect(page).to have_text("Unused cards:")
       expect(page).to have_css("input#card_#{@new_card.id}")
     end 

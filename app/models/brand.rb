@@ -5,6 +5,7 @@ class Brand < ApplicationRecord
   has_many :decks, dependent: :destroy
   validate :unique_category?, on: :update
   validate :uniquer_category?, on: :create
+  validates :api_name, presence: true
 
   attr_accessor :current_user
 

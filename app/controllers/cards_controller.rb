@@ -38,7 +38,7 @@ class CardsController < ApplicationController
     @owner = Owner.find_by(user_id: current_user.id)
     @card = Card.new(name: params[:name], image_url: params[:card][:image_url], count: params[:card][:count], brand_id: params[:brand_id])
     if !@card.save
-      flash[:notice] = "You need at least 1 of the card to add it!"
+      flash[:need_one] = "You need at least 1 of the card to add it!"
       @card_options = [[@card.name, @card.image_url]]
       # byebug
         @card = Card.new
@@ -82,7 +82,7 @@ class CardsController < ApplicationController
     @owner = Owner.find_by(user_id: current_user.id)
     if params[:card][:count].to_i < 1
       flash[:notice] = "Can't have zero of a card! Maybe you meant to delete?"
-      
+
       redirect_to edit_card_path(@card)
     else
       @card.update(params[:card].permit(:count))

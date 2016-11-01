@@ -30,7 +30,7 @@ class CardsController < ApplicationController
         @card_options = MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
       end
       if @card_options.empty?
-        flash[:notice] = "No results for this search."
+        flash[:notice] = ["No results for this search."]
         render :new
       end
     end
@@ -90,7 +90,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @owner = Owner.find_by(user_id: current_user.id)
     if params[:card][:count].to_i < 1
-      flash[:notice] = "Can't have zero of a card! Maybe you meant to delete?"
+      flash[:notice] = ["Can't have zero of a card! Maybe you meant to delete?"]
 
       redirect_to edit_card_path(@card)
     else

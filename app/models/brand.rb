@@ -8,14 +8,6 @@ class Brand < ApplicationRecord
 
   attr_accessor :current_user
 
-  # def api
-  #   if brand.api_id == 1
-  #     brand.api = "Pokemon"
-  #   elsif brand.api_id == 2
-  #     brand.api = "Magic The Gathering"
-  #   end
-  # end
-
   def uniquer_category?
     if current_user
       used_brands = current_user.owner.brands.pluck(:category)

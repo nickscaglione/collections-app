@@ -1,13 +1,13 @@
 <h3>Edit <%= @brand.category %></h3>
 
 <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+  <div class="notice"><%= flash[:notice].first %></div>
 <% end %>
 
 <%= form_for(@brand) do |f| %>
 
   <p><%= f.text_field :category, placeholder: "Collection category" %></p>
- Associated API 
+ Associated API
   <p>  <%= f.radio_button :api_name, "Pokemon" %> <%= f.label :api_name, "Pokemon" %> </p>
   <p>  <%= f.radio_button :api_name, "MTG" %> <%= f.label :api_name, "Magic The Gathering" %> </p>
   <%= f.submit %>
@@ -17,4 +17,3 @@
 
 <%= button_to "Delete This Collection (all of it! and all associated cards!)", {:controller => :brands,
       :action => 'destroy', :id => @brand.id, confirm: 'Are you sure?' }, :method => :delete %>
-

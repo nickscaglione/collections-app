@@ -1,6 +1,12 @@
-<% if flash[:need_one] %>
-  <div class="notice"><%= flash[:need_one] %></div>
+<% if flash[:notice] %>
+  <% flash[:notice].each do |notice| %>
+    <div class="notice">
+      <li><%= notice %></li>
+    </div>
+  <% end %>
 <% end %>
+
+<br>
 
 <%= form_for @card do |f| %>
 

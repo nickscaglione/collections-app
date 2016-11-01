@@ -1,5 +1,9 @@
 <% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+  <% flash[:notice].each do |notice| %>
+    <div class="notice">
+      <li><%= notice %></li>
+    </div>
+  <% end %>
 <% end %>
 
 <p><%= form_tag choose_card_path do %>

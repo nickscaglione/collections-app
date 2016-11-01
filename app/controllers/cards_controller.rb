@@ -3,15 +3,13 @@ class CardsController < ApplicationController
     before_action :require_logged_in
 
   def new
-    # byebug
-    # @user = User.find(3)
+
     @card = Card.new
     if current_user == nil
       redirect_to login_path
     else
       @owner = Owner.find_by(user_id: current_user.id)
     end
-
   end
 
   def choose
@@ -24,29 +22,37 @@ class CardsController < ApplicationController
     else
       @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
       if @brand.api_name == "Pokemon"
-        # byebug
        @card_options = PokemonCards.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i)
       elsif @brand.api_name == "MTG"
         @card_options = MagicTheGathering.find_card(params[:search_term], params[:date][:year_min].to_i, params[:date][:year_max].to_i )
+      end
+      if @card_options.empty?
+        flash[:notice] = "No results for this search."
+        render :new
       end
     end
   end
 
   def create
-    # byebug
     @card = Card.new
     @owner = Owner.find_by(user_id: current_user.id)
     @card = Card.new(name: params[:name], image_url: params[:card][:image_url], count: params[:card][:count], brand_id: params[:brand_id])
+
     if !@card.save
-      flash[:need_one] = "You need at least 1 of the card to add it!"
-      @card_options = [[@card.name, @card.image_url]]
-      # byebug
+      flash[:notice] = @card.errors.full_messages
+
+      if !@card.image_url
+        redirect_to new_card_path
+      else
+        @card_options = [[@card.name, @card.image_url]]
         @card = Card.new
         @owner = Owner.find_by(user_id: current_user.id)
         @brand = Brand.find(params[:brand_id])
-      render :choose
+
+        render :choose
+      end
     else
-        redirect_to card_path(@card)
+      redirect_to card_path(@card)
     end
   end
 

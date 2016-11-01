@@ -19,9 +19,8 @@ class DecksController < ApplicationController
       card.count.times do
         cards_array << card
       end
-    end 
-    # byebug 
-  end 
+    end
+  end
 
   def create
     # byebug
@@ -59,14 +58,14 @@ class DecksController < ApplicationController
   def show
     if current_user == nil
       redirect_to login_path
-    end 
-    @deck = Deck.find_by_id(params[:id]) 
-    if !@deck  
+    end
+    @deck = Deck.find_by_id(params[:id])
+    if !@deck
       @owner = current_user.owner
       redirect_to(see_decks_path(current_user), :notice => 'No Deck With That ID')
     else
       @owner = Owner.find_by(user_id: @deck.owner.id)
-    end 
+    end
       # byebug
   end
 

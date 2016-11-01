@@ -18,8 +18,8 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to @brand
     else
-      flash[:notice] = @brand.errors.full_messages.first
-      render :new
+      flash[:notice] = @brand.errors.full_messages
+      redirect_to new_brand_path
     end
   end
 
@@ -34,8 +34,8 @@ class BrandsController < ApplicationController
     if @brand.save
       redirect_to @brand
     else
-      flash[:notice] = @brand.errors.full_messages.first
-      render :edit
+      flash[:notice] = @brand.errors.full_messages
+      redirect_to edit_brand_path(@brand)
     end
   end
 
@@ -47,21 +47,21 @@ class BrandsController < ApplicationController
       redirect_to(brands_path(current_user), :notice => 'No Collection With That ID')
     else
       @cards = []
-      @brand.cards.each do |card| 
+      @brand.cards.each do |card|
          @cards << [card.name, card.count]
-      end 
+      end
       @owner = Owner.find_by(user_id: current_user.id)
-    end 
+    end
   end
 
-  
+
   def destroy
     @brand = Brand.find(params[:id])
     #byebug
     @brand.delete
     redirect_to brands_path(current_user)
   end
-  
+
 
   private
 

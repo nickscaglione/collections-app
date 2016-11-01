@@ -5,16 +5,9 @@ class Brand < ApplicationRecord
   has_many :decks, dependent: :destroy
   validate :unique_category?, on: :update
   validate :uniquer_category?, on: :create
+  validates :api_name, presence: true
 
   attr_accessor :current_user
-
-  # def api
-  #   if brand.api_id == 1
-  #     brand.api = "Pokemon"
-  #   elsif brand.api_id == 2
-  #     brand.api = "Magic The Gathering"
-  #   end
-  # end
 
   def uniquer_category?
     if current_user
@@ -45,17 +38,17 @@ class Brand < ApplicationRecord
   end
 
 
-  # return the card in the brand that is featured in the most decks (number of times used in a deck not considered)
-  def most_used_card
+  # return the top (argument) cards in the brand that are featured in the most decks (just number of decks, not acknowledging counts within each deck)
+  def most_used_card(top_how_many_cards)
     sql = <<-SQL
-      SELECT cards.id, MAX(cards.name) as name, MAX(cards.image_url) as image_url, MAX(cards.created_at) AS created_at, MAX(cards.updated_at) as updated_at, COUNT(cards.id) AS counter
+      SELECT cards.id, MAX(cards.name) as name, MAX(cards.count) as count, MAX(cards.image_url) as image_url, MAX(cards.created_at) AS created_at, MAX(cards.updated_at) as updated_at, COUNT(cards.id) AS counter
       FROM cards
       LEFT JOIN card_decks ON cards.id = card_decks.card_id
       WHERE cards.brand_id = #{self.id}
-      GROUP BY cards.id ORDER BY counter DESC LIMIT 1
+      GROUP BY cards.id ORDER BY counter DESC LIMIT #{top_how_many_cards}
     SQL
     # find_by_sql returns an array
-    Card.find_by_sql(sql).first
+    Card.find_by_sql(sql)
   end
 
 end

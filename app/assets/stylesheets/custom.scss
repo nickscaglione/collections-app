@@ -30,11 +30,19 @@ input, input[type="textarea"] {
   width: 100%;
   margin-bottom: 15px;
   @include box_sizing(border-box);
-} 
+}
 
 input {
   height: auto !important;
 }
+
+// begin custom notice formatting
+
+.notice {
+  color: #f00
+}
+
+// end custom notice formatting
 
 // begin custom radiobutton image
 .image-radio > input[type="radio"] {

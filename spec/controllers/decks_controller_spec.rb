@@ -43,8 +43,7 @@ RSpec.describe DecksController, :type => :feature do
       choice_doer
       visit edit_deck_path(@deck)
       @new_card = Card.all.last
-      byebug
-      expect(page).to have_text("Unused cards:")
+      expect(page).to have_text("Unused cards: Pikachu (max: 4)")
       expect(page).to have_css("input#card_#{@new_card.id}")
     end 
 
@@ -55,7 +54,7 @@ RSpec.describe DecksController, :type => :feature do
       fill_in("card_#{@new_card.id}", :with => "15")
       click_button("Save changes")
       # byebug
-      expect(page).not_to have_text("Pikachu")
+      expect(page).to have_text("You tried to add too many of the following cards: Pikachu")
       #will edit once I have Nick's gate 
     end 
   end

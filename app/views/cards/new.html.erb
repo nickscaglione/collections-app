@@ -3,14 +3,24 @@
 <% end %>
 
 <p><%= form_tag choose_card_path do %>
-<%= label_tag "Which Collection Is This Card For?" %>
-<% @owner.brands.each do |brand| %>
-<p><%= radio_button_tag :brand, brand.category %>  <%= label_tag :brand, brand.category %> 
+  <%= label_tag "Which Collection Is This Card For?" %>
 
- </p>
-<% end %>
-<p><%= label_tag "Earliest Possible Release Year" %>  <%= select_year(1995, start_year: 1995, end_year: 2016, field_name: 'year_min') %> </p>
-<p><%= label_tag "Latest Possible Release Year" %> <%= select_year(Time.now, start_year: 2016, end_year: 1995, field_name: 'year_max') %> </p>
-<p>   <%= label_tag "search for your card" %><%= text_field_tag :search_term %></p>
+  <% @owner.brands.each do |brand| %>
+    <p><%= radio_button_tag :brand, brand.category %>  <%= label_tag :brand, brand.category %></p>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-3"><%= label_tag "Earliest Possible Release Year:" %></div>
+    <div class="col-lg-9"><%= select_year(1995, start_year: 1995, end_year: 2016, field_name: 'year_min') %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3"><%= label_tag "Latest Possible Release Year:" %></div>
+    <div class="col-lg-9"><%= select_year(Time.now, start_year: 2016, end_year: 1995, field_name: 'year_max') %></div>
+  </div>
+
+  <br>
+
+  <%= label_tag "search for your card by name:" %><%= text_field_tag :search_term %></p>
   <%= submit_tag "Search"%>
 <% end %>

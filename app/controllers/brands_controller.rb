@@ -8,7 +8,8 @@ class BrandsController < ApplicationController
 
   def index
     # byebug
-    @brands = Brand.all
+    un_alpha_brands = Brand.all
+    @brands = un_alpha_brands.sort_by {|brand| brand.owner}
   end
 
   def create

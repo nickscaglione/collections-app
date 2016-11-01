@@ -1,9 +1,16 @@
 <h1><%= link_to @brand.owner.name, owner_path(@brand.owner) %>'s <%= @brand.category %></h1>
 <p>
   <% if @brand.owner.user_id == current_user.id %>
-    <%= link_to "Edit collection category", edit_brand_url(@brand) %>
+    <%= link_to "Edit collection details", edit_brand_url(@brand) %>
   <% end %>
 </p>
+
+
+<h2>Decks:</h2>
+<ul><% @brand.decks.each do |deck| %>
+<li><%= link_to deck.name, deck_path(deck) %></li>
+<% end %></ul>
+
 
 <h2>Cards:</h2>
 <ul><% @brand.cards.each do |card| %>
@@ -12,7 +19,7 @@
 
 <%= pie_chart(@cards) %>
 <% if @brand.owner.user_id == current_user.id %>
-<p><%= link_to "Edit Collection", edit_brand_path(@brand) %></p>
+<p><%= link_to "Edit collection", edit_brand_path(@brand) %></p>
 <% end %>
 
 <p><%= link_to "Back to all collections", brands_path %></p>

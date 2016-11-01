@@ -1,5 +1,5 @@
 
-<h1><%= @deck.owner.name %>'s <%= @deck.name %> deck</h1>
+<h1><%= link_to @deck.owner.name, owner_path(@deck.owner) %>'s <%= @deck.name %> deck</h1>
 <ul><% @deck.cards_with_count.each do |array| %>
 <li>      <%= array[0] %>x <%= link_to array[1].name, card_path(array[1]) %> </li>
         <% end %></ul>
@@ -13,7 +13,8 @@
 
 </p>
 <% if @deck.owner.user_id == current_user.id %>
-  <%= link_to "Edit this deck", edit_deck_path(@deck) %>
+<p>  <%= link_to "Edit this deck", edit_deck_path(@deck) %></p>
 <% end %>
-<br>
-<%= link_to "Back to my decks", see_decks_path %>
+
+<p><%= link_to "Back to my decks", see_decks_path %></p>
+<p><%= link_to "Deck's Collection", brand_path(@deck.brand)  %></p>

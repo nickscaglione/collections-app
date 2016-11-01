@@ -3,7 +3,7 @@
 <% end %>
 
 
-<h1><%= @owner.name %>'s decks</h1>
+<h1><%= link_to @owner.name, owner_path(@owner) %>'s decks</h1>
 
 <ul><% @my_decks.each do |deck| %>
   <li><%= link_to deck.name, deck_path(deck) %></li>

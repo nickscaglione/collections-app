@@ -2,15 +2,19 @@
 <%= @card.count %>x
 <%= @card.name %>
 from their <%= link_to @card.brand.category, brand_path(@card.brand) %> collection.
-<% if @card.decks %>
-<% @card.decks.uniq.each do |deck| %>
- featured in the <%= link_to deck.name, deck_path(deck) %> deck
-  <% end %> <% end %>
+
 <br></br>
 <% if @card.image_url %>
-  <%= image_tag @card.image_url %>
-<% end %>
+<p>  <%= image_tag @card.image_url %>
+</p><% end %>
 <% if @card.owner.user_id == current_user.id %>
+
+<% if @card.decks %>
+<p>Decks: </p>
+<% @do = @card.decks.uniq.map do |deck| %>
+  <ul><%= link_to deck.name, deck_path(deck) %></ul>
+  <% end %> <% end %>
+
 <p><%= link_to "Edit Card", edit_card_path(@card)  %></p>
 <% end %>
 

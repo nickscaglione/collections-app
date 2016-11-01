@@ -11,7 +11,7 @@ RSpec.describe Brand, :type => :model do
     end
   end
 
-  describe "#unique_category?" do
+  describe "#uniquer_category?" do
     it "will not accept an existing name for a new brand" do
       do_things
       current_user = @marc

@@ -9,7 +9,7 @@
 
  </p>
 <% end %>
-<p><%= label_tag "Earliest Possible Release Year" %><%= select_year(1995, start_year: 1995, end_year: 2016, field_name: 'year_min') %> </p>
+<p><%= label_tag "Earliest Possible Release Year" %>  <%= select_year(1995, start_year: 1995, end_year: 2016, field_name: 'year_min') %> </p>
 <p><%= label_tag "Latest Possible Release Year" %> <%= select_year(Time.now, start_year: 2016, end_year: 1995, field_name: 'year_max') %> </p>
 <p>   <%= label_tag "search for your card" %><%= text_field_tag :search_term %></p>
   <%= submit_tag "Search"%>

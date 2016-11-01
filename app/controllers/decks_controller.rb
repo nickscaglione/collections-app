@@ -33,8 +33,6 @@ class DecksController < ApplicationController
     count_hash.each do |card_id, card_count|
       CardDeck.create(deck_id: @deck.id, card_id: card_id, card_count: card_count)
     end
-      # byebug
-
     redirect_to see_decks_path(@deck.owner)
   end
 
@@ -55,10 +53,10 @@ class DecksController < ApplicationController
         flash[:not_enough] << Card.find(card_deck.card_id).name
       end
     end
-
     redirect_path = flash[:not_enough] ? edit_deck_path(@deck) : @deck
 
     redirect_to redirect_path
+
   end
 
   def show
@@ -76,7 +74,6 @@ class DecksController < ApplicationController
   end
 
   def index
-
     if current_user == nil
       redirect_to login_path
     else
@@ -95,7 +92,7 @@ class DecksController < ApplicationController
   def destroy
     @deck = Deck.find(params[:id])
     #byebug
-    @deck.delete
+    @deck.destroy
     @owner = current_user.owner
     redirect_to see_decks_path(current_user)
   end

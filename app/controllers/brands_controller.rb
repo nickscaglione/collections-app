@@ -2,8 +2,7 @@ class BrandsController < ApplicationController
     before_action :require_logged_in
 
   def new
-    byebug
-    @user = User.find(current_user)
+    @user = current_user
     @brand = Brand.new
   end
 
@@ -58,7 +57,7 @@ class BrandsController < ApplicationController
   def destroy
     @brand = Brand.find(params[:id])
     #byebug
-    @brand.delete
+    @brand.destroy
     redirect_to brands_path(current_user)
   end
 

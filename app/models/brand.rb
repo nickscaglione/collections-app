@@ -1,8 +1,8 @@
 class Brand < ApplicationRecord
   has_many :cards, dependent: :destroy
   belongs_to :owner
-  has_many :card_decks, dependent: :destroy
-  has_many :decks, dependent: :destroy
+  has_many :card_decks
+  has_many :decks 
   validate :unique_category?, on: :update
   validate :uniquer_category?, on: :create
   validates :api_name, presence: true

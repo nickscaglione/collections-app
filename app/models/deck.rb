@@ -1,6 +1,6 @@
 class Deck < ApplicationRecord
   has_many :card_decks, dependent: :destroy
-  has_many :cards, through: :card_decks
+  has_many :cards, through: :card_decks, dependent: :destroy
   # belongs_to :brand, through: :cards
   # belongs_to :owner, through: :cards
   #validate :car

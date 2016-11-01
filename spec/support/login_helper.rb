@@ -5,6 +5,8 @@ module LoginHelper
     fill_in('user_name', :with => 'immediato')
     fill_in('password', :with => 'password')
     click_button('submit')
+    @deck = @deck
+    @owner = @marc_coll
   end
 
   def card_creator

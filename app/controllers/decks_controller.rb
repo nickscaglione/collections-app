@@ -68,7 +68,6 @@ class DecksController < ApplicationController
   end
 
   def index
-
     if current_user == nil
       redirect_to login_path
     else
@@ -87,7 +86,7 @@ class DecksController < ApplicationController
   def destroy
     @deck = Deck.find(params[:id])
     #byebug
-    @deck.delete
+    @deck.destroy 
     @owner = current_user.owner
     redirect_to see_decks_path(current_user)
   end

@@ -4,7 +4,7 @@ RSpec.describe DecksController, :type => :feature do
 
   describe "#show" do
     it "has the cards, their count, and their images" do
-      log_in 
+      log_in
       visit deck_path(@deck)
       expect(page).to have_text("3x Charmander")
       expect(page).to have_css("img[src='https://s3.amazonaws.com/pokemontcg/base1/44.jpg']") 
@@ -47,14 +47,36 @@ RSpec.describe DecksController, :type => :feature do
       expect(page).to have_css("input#card_#{@new_card.id}")
     end 
 
-    it "will not allow you to add more of a card than you have"
+    it "will not allow you to add more of a card than you have" do 
       choice_doer
       visit edit_deck_path(@deck)
       @new_card = Card.all.last
-      fill_in("card_#{@new_card.id}", :with => "5")
+      fill_in("card_#{@new_card.id}", :with => "15")
       click_button("Save changes")
-      expect(page).to have_text("")
+      # byebug
+      expect(page).not_to have_text("Pikachu")
+      #will edit once I have Nick's gate 
     end 
   end
+
+  describe "#index" do 
+    it "only show's the current user's decks" do 
+      log_in
+      do_other_things
+      visit see_decks_path
+      expect(page).to have_text("Marc's Starters")
+      expect(page).not_to have_text("Ducks")
+    end
+  end 
+
+  describe "#destroy" do 
+    it "destroys the deck" do 
+      log_in
+      visit edit_deck_path(@deck)
+      click_button('Delete This Deck (all of it!)')
+      expect(page).to have_text("immediato's decks")
+      expect(page).not_to have_text("Marc's Starters")
+    end 
+  end 
 
 end 

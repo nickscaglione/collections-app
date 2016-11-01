@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  around_filter :catch_not_found
+  # around_filter :catch_not_found
   helper_method :current_user
 
   def index
@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def catch_not_found
-    yield
-    rescue ActiveRecord::RecordNotFound
-    redirect_to root_url, :flash => { :error => "Record not found." }
-  end
+  # def catch_not_found
+  #   yield
+  #   rescue ActiveRecord::RecordNotFound
+  #   redirect_to root_url, :flash => { :error => "Record not found." }
+  # end
 
 
 

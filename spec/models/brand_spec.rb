@@ -36,10 +36,10 @@ RSpec.describe Brand, :type => :model do
 
   
 
-  describe "#most_used_card" do
-    it "can return the card that appears in the most decks of the brand" do
-      do_things
-      expect(@marc_poke.most_used_card.name).to eq("Charmander")
-    end
-  end
+  # describe "#most_used_card" do
+  #   it "can return the card that appears in the most decks of the brand" do
+  #     do_things
+  #     expect(@marc_poke.most_used_card.name).to eq("Charmander")
+  #   end
+  # end
 end

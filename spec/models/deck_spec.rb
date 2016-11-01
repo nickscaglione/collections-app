@@ -18,13 +18,14 @@ describe "#owner" do
 end
 
 
-
 describe "#cards_with_count" do 
   it "can identify the owner associated with itself" do 
     do_things
-    expect(@deck.cards_with_count).to include([1, @char])
-    expect(@deck.cards_with_count).to include([1, @bulb])
-    expect(@deck.cards_with_count).to include([1, @squirt])
+    yes = @deck.cards_with_count.select {|card| card == [@char, 3]}
+    no = @deck.cards_with_count.select {|card| card == [@char, 1]}
+    # byebug 
+    expect(yes).to be
+    expect(no.empty?).to be
   end
 end
 

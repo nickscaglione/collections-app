@@ -2,6 +2,7 @@ class BrandsController < ApplicationController
     before_action :require_logged_in
 
   def new
+    byebug
     @user = User.find(current_user)
     @brand = Brand.new
   end

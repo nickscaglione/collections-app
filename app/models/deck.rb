@@ -15,12 +15,17 @@ end
 
 def cards_with_count
   cards = []
-  self.card_decks.each do |card_deck|
-    card = Card.find(card_deck.card_id)
-    count = card_deck.card_count
-    cards << [count, card]
-  end 
-    cards
+  self.cards.each do |card|
+    cards << [card, card.count]
+  end
+  # byebug
+  # self.card_decks.each do |card_deck|
+  #   card = Card.find(card_deck.card_id)
+  #   count = card_deck.card_count
+  #   cards << [count, card]
+  # end 
+  #   byebug
+     cards
   end 
 
 end

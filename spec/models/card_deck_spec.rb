@@ -5,7 +5,8 @@ RSpec.describe CardDeck, :type => :model do
   describe "#card_id" do
     it "fails to save when trying to put more of a card into a deck than there are in the deck's collection" do
       do_things
-      @cubone = Card.create(name: "Cubone", count: 1, brand_id: @marc_poke.id)
+      @cubone = Card.create(name: "Cubone", count: 1, brand_id: @marc_poke.id, image_url: "https://s3.amazonaws.com/pokemontcg/base2/50.jpg")
+      # byebug
       @cd4 = CardDeck.create(card_id: @cubone.id, deck_id: @deck.id, card_count: 4)
       expect(@cd4.persisted?).to eq(false)
     end
@@ -14,7 +15,7 @@ RSpec.describe CardDeck, :type => :model do
   describe "#not_zero_or_nil?" do
     it "will not create a CardDeck row if the card_count is zero or nil" do
       do_things
-      @cubone = Card.create(name: "Cubone", count: 1, brand_id: @marc_poke.id)
+      @cubone = Card.create(name: "Cubone", count: 1, brand_id: @marc_poke.id, image_url: "https://s3.amazonaws.com/pokemontcg/base2/50.jpg")
       @cd4 = CardDeck.create(card_id: @cubone.id, deck_id: @deck.id, card_count: 0)
       expect(@cd4.persisted?).to eq(false)
     end

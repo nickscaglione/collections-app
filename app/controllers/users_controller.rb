@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user)
+    @user = current_user
     @owner = Owner.find_by(user_id: current_user.id)
   end
 

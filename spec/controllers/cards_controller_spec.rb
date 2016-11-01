@@ -13,13 +13,11 @@ RSpec.describe CardsController, :type => :feature do
       do_things
       log_in
       visit new_card_path
-      # byebug
       expect(page).to have_css("input", :id => "brand_Pokemon")
     end 
 
     it "redirects to choose page upon searching" do 
       card_creator 
-      # byebug
       expect(page).to have_css("input", :id => "https://s3.amazonaws.com/pokemontcg/basep/4.jpg")
     end 
   end
@@ -44,11 +42,8 @@ RSpec.describe CardsController, :type => :feature do
     it "shows a card and its image" do
       do_things
       log_in
-      # byebug
-      # @user = @marc 
       @card = Card.find_by(name: "Bulbasaur")
       visit card_path(@card)
-      #byebug
       expect(page).to have_text("immediato's 1x Bulbasaur from their Pokemon collection. featured in the Marc's Starters deck")
       expect(page).to have_css("img[src='https://s3.amazonaws.com/pokemontcg/base1/44.jpg']")
     end

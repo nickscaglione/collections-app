@@ -33,8 +33,6 @@ class DecksController < ApplicationController
     count_hash.each do |card_id, card_count|
       CardDeck.create(deck_id: @deck.id, card_id: card_id, card_count: card_count)
     end
-      # byebug
-
     redirect_to see_decks_path(@deck.owner)
   end
 

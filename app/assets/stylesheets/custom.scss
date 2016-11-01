@@ -47,6 +47,19 @@ input {
     border-radius: 8px
 }
 // end custom radiobutton image
+// begin custom checkbox image (same as above)
+.image-checkbox > input[type="checkbox"] {
+    display: none;
+}
+.image-checkbox > input[type="checkbox"] + label {
+  border: 10px solid transparent;
+  border-radius: 8px
+}
+.image-checkbox > input[type="checkbox"]:checked + label {
+    border: 10px solid #6CDBFF;
+    border-radius: 8px
+}
+// end custom checkbox image
 
 /* universal */
 

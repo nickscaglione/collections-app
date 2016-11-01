@@ -8,13 +8,14 @@
 
   <%= label_tag :cards, "Cards" %>
   <div class="container">
-    <% @card_by_counts.each_slice(3) do |three_cards| %>
+    <% @card_by_counts.each_slice(3).with_index do |three_cards, incrementer| %>
     <div class="row">
-      <% three_cards.each do |card| %>
+      <% three_cards.each_with_index do |card, index| %>
         <div class="col-lg-4">
-          <span class="image-radio">
-            <%= check_box_tag :"card[]",card.id %>
-            <label><%= image_tag(card.image_url) %></label>
+          <span class="image-checkbox">
+            <!-- incrementer is 0, 1, 2, ... index is 0, 1, 2, ... so ids are 0, 1, 2, 0+3*1=3, etc -->
+            <input type="checkbox" name="card[]" value=<%=card.id%> id=<%=index + incrementer * 3%>>
+            <label for=<%=index + incrementer * 3%>><%= image_tag(card.image_url) %></label>
           </span>
         </div>
       <% end %>

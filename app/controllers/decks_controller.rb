@@ -49,10 +49,16 @@ class DecksController < ApplicationController
     CardDeck.destroy_all(deck_id: @deck.id)
     count_hash = {}
     params[:card].each do |card_id, card_count|
-      CardDeck.create(deck_id: @deck.id, card_id: card_id, card_count: card_count)
+      card_deck = CardDeck.create(deck_id: @deck.id, card_id: card_id, card_count: card_count)
+      if card_deck.card_count > Card.find(card_deck.card_id).count
+        flash[:not_enough] ||= []
+        flash[:not_enough] << Card.find(card_deck.card_id).name
+      end
     end
 
-    redirect_to @deck
+    redirect_path = flash[:not_enough] ? edit_deck_path(@deck) : @deck
+
+    redirect_to redirect_path
   end
 
   def show

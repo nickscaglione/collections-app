@@ -33,6 +33,8 @@ class CardsController < ApplicationController
         flash[:notice] = ["No results for this search."]
         render :new
       end
+      # remove cards that are missing fields
+      @card_options.reject! { |option| option.compact.size != 3 }
     end
   end
 

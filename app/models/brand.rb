@@ -41,7 +41,7 @@ class Brand < ApplicationRecord
         decks << deck
       end
     end
-    decks
+    decks.uniq
   end
 
 

@@ -11,4 +11,14 @@ RSpec.describe CardDeck, :type => :model do
     end
   end
 
+  describe "#not_zero_or_nil?" do
+    it "will not create a CardDeck row if the card_count is zero or nil"
+      do_things
+      @cubone = Card.create(name: "Cubone", count: 1, brand_id: @marc_poke.id)
+      @cd4 = CardDeck.create(card_id: @cubone.id, deck_id: @deck.id, card_count: 0)
+      expect(@cd4.persisted?).to eq(false)
+    end
+  end
+
+
 end

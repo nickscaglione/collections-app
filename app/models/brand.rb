@@ -1,5 +1,5 @@
 class Brand < ApplicationRecord
-  has_many :cards, dependent: :destroy 
+  has_many :cards, dependent: :destroy
   belongs_to :owner
   has_many :card_decks, dependent: :destroy
   has_many :decks, dependent: :destroy
@@ -48,7 +48,7 @@ class Brand < ApplicationRecord
   # return the card in the brand that is featured in the most decks (number of times used in a deck not considered)
   def most_used_card
     sql = <<-SQL
-      SELECT cards.id, MAX(cards.name) as name, MAX(cards.created_at) AS created_at, MAX(cards.updated_at) as updated_at, COUNT(cards.id) AS counter
+      SELECT cards.id, MAX(cards.name) as name, MAX(cards.image_url) as image_url, MAX(cards.created_at) AS created_at, MAX(cards.updated_at) as updated_at, COUNT(cards.id) AS counter
       FROM cards
       LEFT JOIN card_decks ON cards.id = card_decks.card_id
       WHERE cards.brand_id = #{self.id}

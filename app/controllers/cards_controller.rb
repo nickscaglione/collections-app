@@ -17,7 +17,10 @@ class CardsController < ApplicationController
     @owner = Owner.find_by(user_id: current_user.id)
     #make sure brand is selected
     if !params[:brand]
-      flash[:notice] = "You must select a collection!"
+      flash[:notice] = ["You must select a collection!"]
+      render :new
+    elsif params[:search_term].length <= 4
+      flash[:notice] = ["Search term must be at least 5 characters long"]
       render :new
     else
       @brand = Brand.find_by(category: params[:brand], owner_id: @owner.id)
